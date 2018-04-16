@@ -48,6 +48,13 @@ mostly adding and removing active classes. Examples for each of the components c
 However, we don't publish the js along with styles because our personal preference is having a consistent stlye sheet
 and using what ever freamework or vanilla javascript in a particular project for manipulating the components.
 
+#### Components dependent on javascript
+
+- Accordion
+- Dropdown
+- Modal
+- Tabs
+
 ## Documentation
 
 For a detailed breakdown please visit:
