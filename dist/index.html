@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Metas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links -->
+    <link rel="stylesheet" type="text/css" href="index.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/themes/prism.min.css" rel="stylesheet" />
+
+    <!-- Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/prism.min.js"></script>
+    <script>
+      window.onload = () => {
+
+        /*
+         * Accordion
+         */
+
+        const activeClassName = 'active';
+        const accordionClassName = 'accordion';
+        const summaryClassName = 'accordion-summary';
+
+        const accordionElements = document.querySelectorAll('.' + accordionClassName);
+
+        function open(accordionEl) {
+
+          const height = accordionEl.scrollHeight;
+
+          accordionEl.style.maxHeight = height + 'px';
+
+          let parent = accordionEl.parentElement;
+
+          while (parent) {
+
+            if (parent.classList.contains(accordionClassName)) {
+              const currentMaxHeight = parseInt(parent.style.maxHeight.replace('px', ''));
+              parent.style.maxHeight = (currentMaxHeight + height) + 'px';
+            }
+
+            parent = parent.parentElement;
+          }
+
+          accordionEl.classList.add(activeClassName);
+        }
+
+        function close(accordionEl, summeryEl) {
+          const height = accordionEl.scrollHeight - summeryEl.scrollHeight;
+
+          accordionEl.style.maxHeight = summeryEl.scrollHeight + 'px';
+
+          let parent = accordionEl.parentElement;
+
+          while (parent) {
+
+            if (parent.classList.contains(accordionClassName)) {
+              const currentMaxHeight = parseInt(parent.style.maxHeight.replace('px', ''));
+              parent.style.maxHeight = (currentMaxHeight - height) + 'px';
+            }
+
+            parent = parent.parentElement;
+          }
+
+          accordionEl.classList.remove(activeClassName);
+        }
+
+        accordionElements.forEach(accordionEl => {
+          const summeryEl = accordionEl.querySelector('.' + summaryClassName);
+
+        let active = accordionEl.classList.contains(activeClassName);
+
+        if (active) {
+          open(accordionEl);
+        } else {
+          close(accordionEl, summeryEl);
+        }
+
+        summeryEl.addEventListener('click', () => {
+          if (active) {
+            close(accordionEl, summeryEl);
+          } else {
+            open(accordionEl);
+      }
+
+        active = !active;
+      })
+      });
+
+        /*
+         * Modal
+         */
+
+        const modal = document.querySelectorAll('.modal');
+        const modalContent = document.querySelectorAll('.modal-content');
+        const modalOpen = document.querySelectorAll('[data-open-modal]');
+        const modalClose = document.querySelectorAll('[data-close-modal]');
+
+        modalOpen.forEach(el => {
+          const modalEl = document.getElementById(el.getAttribute('data-open-modal'));
+        el.addEventListener('click', () => {
+          modalEl.classList.add('active');
+        const modalHeaderEl = modalEl.querySelector('.modal-header').scrollHeight;
+        const modalFooterEl = modalEl.querySelector('.modal-footer').scrollHeight;
+        const modalBodyEl = modalEl.querySelector('.modal-body');
+        modalBodyEl.style.maxHeight = ('calc(100vh - 4rem - ' + (modalHeaderEl + modalFooterEl) + 'px)');
+      })
+      });
+
+        modalContent.forEach(el => {
+          el.addEventListener('click', (event) => {
+          event.stopPropagation();
+      });
+      });
+
+        modal.forEach(el => {
+          el.addEventListener('click', () => {
+          el.classList.remove('active');
+      });
+      });
+
+        modalClose.forEach(el => {
+          el.addEventListener('click', () => {
+          modal.forEach(el => {
+          el.classList.remove('active');
+      });
+      });
+      });
+
+        /*
+         * Tabs
+         */
+
+        const tabs = document.querySelectorAll('.tabs');
+
+        tabs.forEach(el => {
+          let nav = el.querySelector('nav');
+        let a = nav.querySelectorAll('a');
+
+        a[0].classList.add('active');
+        document.getElementById(a[0].getAttribute('href').substring(1)).classList.add('active');
+
+        a.forEach(el => {
+          el.addEventListener('click', (event) => {
+          event.preventDefault();
+
+        a.forEach(el => {
+          el.classList.remove('active');
+        document.getElementById(el.getAttribute('href').substring(1)).classList.remove('active');
+      });
+
+        el.classList.add('active');
+        document.getElementById(el.getAttribute('href').substring(1)).classList.add('active');
+
+      });
+      });
+      });
+
+        /*
+         * Dropdown
+         */
+
+        const dropdown = document.querySelectorAll('.dropdown');
+
+        dropdown.forEach(el => {
+
+          const dropdownContent = el.querySelector('.dropdown-content');
+
+        el.addEventListener('click', (event) => {
+
+          event.stopPropagation();
+
+        dropdown.forEach(el => {
+          el.classList.remove('active');
+      });
+
+        el.classList.add('active');
+
+        dropdownContent.addEventListener('click', (event) => {
+          event.stopPropagation();
+        dropdownContent.parentElement.classList.remove('active');
+      });
+
+      });
+
+      });
+
+        window.addEventListener('click', () => {
+          dropdown.forEach(el => {
+          el.classList.remove('active');
+      });
+      });
+
+      }
+    </script>
+</head>
+
+<body>
+
+<header>
+    <div class="grid nogutter">
+        <div class="col-12">
+            <div class="dropdown">
+                <button class="btn-contain"><img src="assets/imgs/menu.svg" alt=""></button>
+                <div class="dropdown-content">
+                    <a class="dropdown-item" href="#how-its-organized">How it's organized</a>
+                    <hr>
+                    <a class="dropdown-item" href="#variables">Variables</a>
+                    <a class="dropdown-item" href="#fluid">Fluid</a>
+                    <a class="dropdown-item" href="#darken-and-lighten">Darken & lighten</a>
+                    <hr>
+                    <a class="dropdown-item" href="#typography">Typography</a>
+                    <a class="dropdown-item" href="#buttons">Buttons</a>
+                    <a class="dropdown-item" href="#grid">Grid</a>
+                    <a class="dropdown-item" href="#form">Form</a>
+                    <a class="dropdown-item" href="#accordion">Accordion</a>
+                    <a class="dropdown-item" href="#modal">Modal</a>
+                    <a class="dropdown-item" href="#tabs">Tabs</a>
+                    <a class="dropdown-item" href="#table">Table</a>
+                    <a class="dropdown-item" href="#dropdown">Dropdown</a>
+                    <a class="dropdown-item" href="#tooltips">Tooltips</a>
+                    <hr>
+                    <a class="dropdown-item" href="#link">Link</a>
+                    <a class="dropdown-item" href="#card">Card</a>
+                    <a class="dropdown-item" href="#align">Align</a>
+                    <a class="dropdown-item" href="#hide-and-show">Hide & show</a>
+                    <a class="dropdown-item" href="#flex">Flex</a>
+                    <a class="dropdown-item" href="#margin-and-padding">Margin & padding</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="intro flex fd-col ai-center jc-center p-y-xl">
+        <img src="assets/imgs/pix.svg" width="140" height="140" alt="">
+        <span class="logo m-t-s">Pix.css</span>
+        <span class="m-b-l m-t-s">A collection of simple boilerplate scss and html that is easy to modify and extend.</span>
+        <div class="flex fd-col ai-center">
+            <a class="m-a-xs link">Docs</a>
+            <a class="m-a-xs link">Showcase</a>
+        </div>
+        <a class="m-y-m m-x-s btn-primary">View on GitHub</a>
+        <span>Made by <a class="link" href="">Jaspero</a></span>
+    </section>
+
+    <div class="grid">
+
+        <div class="col-8 col-m-10 col-s-12">
+
+            <!-- Intro -->
+            <section>
+                <h2 id="how-its-organized">How it's organized</h2>
+                <article>
+                    <pre class="js"><code class="language-css">├── assets/
+│   ├── fonts/
+│   ├── imgs/
+│   └── scss/
+│       ├── essentials/
+│       │   ├── variables.scss
+│       │   └── tools.scss
+│       ├── generic/
+│       │   ├── base.scss
+│       │   └── typography.scss
+│       ├── components/
+│       │   ├── buttons.scss
+│       │   ├── grid.scss
+│       │   ├── form.scss
+│       │   ├── accordion.scss
+│       │   ├── modal.scss
+│       │   ├── tabs.scss
+│       │   ├── table.scss
+│       │   ├── dropdown.scss
+│       │   └── tooltips.scss
+│       └── utilities/
+│           └── utilities.scss
+├── index.html
+└── index.scss</code></pre>
+                </article>
+
+            </section>
+
+            <!-- Essentials -->
+            <section>
+
+                <h2>Essentials</h2>
+
+                <h4 id="variables">Variables</h4>
+                <p>Use to store commonly used values. Its good practice, and makes the project easily maintainable. Some ideas for variables:</p>
+                <ul>
+                    <li><code class="language-html">screen-size</code>,</li>
+                    <li><code class="language-html">color</code>,</li>
+                    <li><code class="language-html">background</code>.</li>
+                </ul>
+                <article>
+                    <pre class="css"><code class="language-css">/* Screen sizes */
+$screen-xs: 450px;
+$screen-s : 800px;
+$screen-m : 1200px;
+
+@media screen and (max-width: $screen-xs) { … }
+@media screen and (max-width: $screen-s) { … }
+@media screen and (max-width: $screen-m) { … }</code></pre>
+                </article>
+
+                <h4>Tools</h4>
+                <h6 id="fluid">Fluid mixin</h6>
+                <article>
+                    <div class="example">
+                        <span class="fluid-example">Fluid</span>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;span class="fluid-example">Fluid example&lt;/span></code></pre>
+                    <pre class="css"><code class="language-css">.fluid-example {
+  @include fluid(50px, 20px, font-size);
+}</code></pre>
+                </article>
+                <h6 id="darken-and-lighten">Darken & lighten</h6>
+                <article>
+                    <div class="example"><button class="btn-primary">Button</button></div>
+                    <pre class="css"><code class="language-css">button {
+  background: dodgerblue;
+}
+button:hover, button:focus {
+  background: darken(dodgerblue, 15%);
+}</code></pre>
+                </article>
+
+            </section>
+
+            <!-- Generic -->
+            <section>
+
+                <h2>Generic</h2>
+
+                <h4 id="typography">Typography</h4>
+                <article>
+                    <div class="example">
+                        <h1>Heading 1</h1>
+                        <h2>Heading 2</h2>
+                        <h3>Heading 3</h3>
+                        <h4>Heading 4</h4>
+                        <h5>Heading 5</h5>
+                        <h6>Heading 6</h6>
+                        <p>A quick brown fox jumps over the lazy dog.</p>
+                        <ul>
+                            <li>Unordered</li>
+                            <li>List</li>
+                            <li>Example</li>
+                        </ul>
+                        <hr>
+                        <ol>
+                            <li>Ordered</li>
+                            <li>List</li>
+                            <li>Example</li>
+                        </ol>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;h1>Heading 1&lt;/h1>
+&lt;h2>Heading 2&lt;/h2>
+&lt;h3>Heading 3&lt;/h3>
+&lt;h4>Heading 4&lt;/h4>
+&lt;h5>Heading 5&lt;/h5>
+&lt;h6>Heading 6&lt;/h6>
+&lt;p>A quick brown fox jumps over the lazy dog.&lt;/p>
+&lt;ul>
+    &lt;li>Unordered&lt;/li>
+    &lt;li>List&lt;/li>
+    &lt;li>Example&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;ol>
+    &lt;li>Ordered&lt;/li>
+    &lt;li>List&lt;/li>
+    &lt;li>Example&lt;/li>
+&lt;/ol></code></pre>
+                </article>
+
+            </section>
+
+            <!-- Components -->
+            <section>
+
+                <h2>Components</h2>
+
+                <h4 id="buttons">Buttons</h4>
+                <article>
+                    <div class="example">
+                        <button class="btn-primary">Primary</button>
+                        <button class="btn-ghost">Ghost</button>
+                        <button class="btn-contain">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path d="M18.17 1.83c-1.1-1.1-2.08-.78-2.08-.78L7.45 9.68 6 14l4.32-1.45 8.63-8.64s.32-.98-.78-2.08zM10.6 11.6l-.47.47-1.47.5c-.1-.24-.23-.48-.5-.74-.26-.27-.5-.4-.74-.5l.5-1.48.47-.47s.78-.09 1.54.68c.76.76.68 1.54.68 1.54zM16 17H3V4h5l2-2H3a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2h13a2 2 0 0 0 2-2v-7l-2 2v5z"/></svg>
+                        </button>
+                        <button class="btn-primary" disabled>Disabled</button>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;button class="btn-primary">Primary&lt;/button>
+&lt;button class="btn-ghost">Ghost&lt;/button>
+&lt;button class="btn-contain">&lt;svg>…&lt;svg>&lt;/button>
+&lt;button class="btn-primary" disabled>Disabled&lt;/button></code></pre>
+                </article>
+                <article>
+                    <div class="example">
+                        <button class="btn-primary loading">Primary</button>
+                        <button class="btn-primary error">Primary</button>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;button class="btn-primary loading">Primary&lt;/button>
+&lt;button class="btn-primary error">Primary&lt;/button></code></pre>
+                </article>
+
+                <h4 id="grid">Grid</h4>
+                <article>
+                    <div class="example">
+                        <div class="grid">
+                            <div class="col-6"><div class="box">col-6</div></div>
+                            <div class="col-6"><div class="box">col-6</div></div>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="grid">
+    &lt;div class="col-6">col-6&lt;/div>
+    &lt;div class="col-6">col-6&lt;/div>
+&lt;/div></code></pre>
+                </article>
+                <article>
+                    <div class="example">
+                        <div class="grid full nogutter">
+                            <div class="col-6"><div class="box">col-6</div></div>
+                            <div class="col-6"><div class="box">col-6</div></div>
+                            <div class="col-6"><div class="box">col-6</div></div>
+                            <div class="col-6"><div class="box">col-6</div></div>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="grid full nogutter">
+    &lt;div class="col-6">col-6&lt;/div>
+    &lt;div class="col-6">col-6&lt;/div>
+    &lt;div class="col-6">col-6&lt;/div>
+    &lt;div class="col-6">col-6&lt;/div>
+&lt;/div></code></pre>
+                </article>
+                <article>
+                    <div class="example">
+                        <div class="grid">
+                            <div class="col-6"><div class="box">col-6</div></div>
+                            <div class="col-6"><div class="box">col-6</div></div>
+                            <div class="col-6"><div class="box">col-6</div></div>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="grid">
+    &lt;div class="col-6">col-6&lt;/div>
+    &lt;div class="col-6">col-6&lt;/div>
+    &lt;div class="col-6">col-6&lt;/div>
+&lt;/div></code></pre>
+                </article>
+                <article>
+                    <div class="example">
+                        <div class="grid">
+                            <div class="col-3 col-m-6 col-s-12"><div class="box">col-3 col-m-6 col-s-12</div></div>
+                            <div class="col-3 col-m-6 col-s-12"><div class="box">col-3 col-m-6 col-s-12</div></div>
+                            <div class="col-3 col-m-6 col-s-12"><div class="box">col-3 col-m-6 col-s-12</div></div>
+                            <div class="col-3 col-m-6 col-s-12"><div class="box">col-3 col-m-6 col-s-12</div></div>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="grid">
+    &lt;div class="col-3 col-m-6 col-s-12">col-3 col-m-6 col-s-12&lt;/div>
+    &lt;div class="col-3 col-m-6 col-s-12">col-3 col-m-6 col-s-12&lt;/div>
+    &lt;div class="col-3 col-m-6 col-s-12">col-3 col-m-6 col-s-12&lt;/div>
+    &lt;div class="col-3 col-m-6 col-s-12">col-3 col-m-6 col-s-12&lt;/div>
+&lt;/div></code></pre>
+                </article>
+
+                <h4 id="form">Form</h4>
+                <p>Value for <code class="language-html">&lt;label class=""></code> can be one of the following:</p>
+                <ul>
+                    <li><code class="language-html">block</code>,</li>
+                    <li><code class="language-html">inline</code>,</li>
+                    <li><code class="language-html">centered</code>,</li>
+                    <li><code class="language-html">space-between</code>.</li>
+                </ul>
+                <p>Value for <code class="language-html">&lt;fieldset class=""></code> can be one of the following:</p>
+                <ul>
+                    <li><code class="language-html">block</code>,</li>
+                    <li><code class="language-html">inline</code>,</li>
+                    <li><code class="language-html">split-evenly</code>.</li>
+                </ul>
+                <article>
+                    <div class="example">
+                        <label for="email" class="block">
+                            <span>Your email</span>
+                            <input type="email" id="email" name="" placeholder="e.g. john@doe.com">
+                        </label>
+                        <br>
+                        <label for="option" class="block">
+                            <span>Options</span>
+                            <select id="option" name="">
+                                <option value="">First option</option>
+                                <option value="">Second</option>
+                                <option value="">Third</option>
+                            </select>
+                        </label>
+                        <br>
+                        <label for="message" class="block">
+                            <span>Your message</span>
+                            <textarea id="message" name="" rows="4" placeholder="Hi, I'd like to say…"></textarea>
+                        </label>
+                        <br>
+                        <label for="toggle" class="space-between">
+                            <span>Toggle</span>
+                            <input type="checkbox" id="toggle" name="">
+                            <div class="toggle"></div>
+                        </label>
+                        <br>
+                        <fieldset class="block">
+                            <legend>Legend</legend>
+                            <label for="checkbox1" class="inline">
+                                <input type="checkbox" id="checkbox1" name="">
+                                <div class="checkbox"></div>
+                                <span>One</span>
+                            </label>
+                            <label for="checkbox2" class="inline">
+                                <input type="checkbox" id="checkbox2" name="">
+                                <div class="checkbox"></div>
+                                <span>Two</span>
+                            </label>
+                            <label for="checkbox3" class="inline">
+                                <input type="checkbox" id="checkbox3" name="">
+                                <div class="checkbox"></div>
+                                <span>Three</span>
+                            </label>
+                        </fieldset>
+                        <br>
+                        <fieldset class="split-evenly">
+                            <legend>Legend</legend>
+                            <label for="radio1" class="centered">
+                                <input type="radio" id="radio1" name="radio">
+                                <div class="radio"></div>
+                                <span>One</span>
+                            </label>
+                            <label for="radio2" class="centered">
+                                <input type="radio" id="radio2" name="radio">
+                                <div class="radio"></div>
+                                <span>Two</span>
+                            </label>
+                            <label for="radio3" class="centered">
+                                <input type="radio" id="radio3" name="radio">
+                                <div class="radio"></div>
+                                <span>Three</span>
+                            </label>
+                        </fieldset>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;label for="option" class="block">
+    &lt;span>Options&lt;/span>
+    &lt;select id="option" name="">
+        &lt;option value="">First option&lt;/option>
+        &lt;option value="">Second&lt;/option>
+        &lt;option value="">Third&lt;/option>
+    &lt;/select>
+&lt;/label>
+&lt;label for="message" class="block">
+    &lt;span>Your message&lt;/span>
+    &lt;textarea id="message" name="" rows="4" placeholder="Hi, I'd like to say…">&lt;/textarea>
+&lt;/label>
+&lt;label for="toggle" class="space-between">
+    &lt;span>Toggle&lt;/span>
+    &lt;input type="checkbox" id="toggle" name="">
+    &lt;div class="toggle">&lt;/div>
+&lt;/label>
+&lt;fieldset class="block">
+    &lt;legend>Legend&lt;/legend>
+    &lt;label for="checkbox1" class="inline">
+        &lt;input type="checkbox" id="checkbox1" name="">
+        &lt;div class="checkbox">&lt;/div>
+        &lt;span>One&lt;/span>
+    &lt;/label>
+    &lt;label for="checkbox2" class="inline">
+        &lt;input type="checkbox" id="checkbox2" name="">
+        &lt;div class="checkbox">&lt;/div>
+        &lt;span>Two&lt;/span>
+    &lt;/label>
+    &lt;label for="checkbox3" class="inline">
+        &lt;input type="checkbox" id="checkbox3" name="">
+        &lt;div class="checkbox">&lt;/div>
+        &lt;span>Three&lt;/span>
+    &lt;/label>
+&lt;/fieldset>
+&lt;fieldset class="split-evenly">
+    &lt;legend>Legend&lt;/legend>
+    &lt;label for="radio1" class="centered">
+        &lt;input type="radio" id="radio1" name="radio">
+        &lt;div class="radio">&lt;/div>
+        &lt;span>One&lt;/span>
+    &lt;/label>
+    &lt;label for="radio2" class="centered">
+        &lt;input type="radio" id="radio2" name="radio">
+        &lt;div class="radio">&lt;/div>
+        &lt;span>Two&lt;/span>
+    &lt;/label>
+    &lt;label for="radio3" class="centered">
+        &lt;input type="radio" id="radio3" name="radio">
+        &lt;div class="radio">&lt;/div>
+        &lt;span>Three&lt;/span>
+    &lt;/label>
+&lt;/fieldset></code></pre>
+                </article>
+
+                <h4 id="accordion">Accordion</h4>
+                <article>
+                    <div class="example">
+                        <div class="accordion active">
+                            <span class="accordion-summary">This accordion is has active class</span>
+                            <span>Accordion content</span>
+                        </div>
+                        <div class="accordion">
+                            <span class="accordion-summary">There's a nested accordion inside</span>
+                            <span>Accordion content</span>
+                            <div class="accordion">
+                                <span class="accordion-summary">Nested accordion</span>
+                                <span>Accordion content</span>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="accordion active">
+    &lt;span class="accordion-summary">This accordion is has active class&lt;/span>
+    &lt;span>Accordion content&lt;/span>
+&lt;/div>
+&lt;div class="accordion">
+    &lt;span class="accordion-summary">There's a nested accordion inside&lt;/span>
+    &lt;span>Accordion content&lt;/span>
+    &lt;div class="accordion">
+        &lt;span class="accordion-summary">Nested accordion&lt;/span>
+        &lt;span>Accordion content&lt;/span>
+    &lt;/div>
+&lt;/div></code></pre>
+                </article>
+
+                <h4 id="modal">Modal</h4>
+                <article>
+                    <div class="example">
+                        <button class="btn-primary" data-open-modal="modalID">Open modal</button>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;button data-open-modal="modalID">Open modal&lt;/button>
+&lt;div id="modalID" class="modal">
+    &lt;div class="modal-content">
+        &lt;div class="modal-header">Header&lt;/div>
+        &lt;div class="modal-body">…&lt;/div>
+        &lt;div class="modal-footer">&lt;button data-close-modal>Close&lt;/button>&lt;/div>
+    &lt;/div>
+&lt;/div></code></pre>
+                </article>
+
+                <h4 id="tabs">Tabs</h4>
+                <article>
+                    <div class="example">
+                        <div class="tabs">
+                            <nav>
+                                <a href="#tab1">Tab 1</a>
+                                <a href="#tab2">Tab 2</a>
+                                <a href="#tab3">Tab 3</a>
+                            </nav>
+                            <div class="tab-content" id="tab1">Tab 1</div>
+                            <div class="tab-content" id="tab2">Tab 2</div>
+                            <div class="tab-content" id="tab3">Tab 3</div>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="tabs">
+    &lt;nav>
+        &lt;a href="#tab1">Tab 1&lt;/a>
+        &lt;a href="#tab2">Tab 2&lt;/a>
+        &lt;a href="#tab3">Tab 3&lt;/a>
+    &lt;/nav>
+    &lt;div class="tab-content" id="tab1">Tab 1&lt;/div>
+    &lt;div class="tab-content" id="tab2">Tab 2&lt;/div>
+    &lt;div class="tab-content" id="tab3">Tab 3&lt;/div>
+&lt;/div></code></pre>
+                </article>
+
+                <h4 id="table">Table</h4>
+                <article>
+                    <div class="example">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td data-label="Index">1</td>
+                                <td data-label="Name">Abraham Alpha</td>
+                                <td data-label="Email">abe@email.com</td>
+                                <td data-label="Status">Online</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Index">2</td>
+                                <td data-label="Name">Benjamin Beta</td>
+                                <td data-label="Email">ben@email.com</td>
+                                <td data-label="Status">Offline</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Index">3</td>
+                                <td data-label="Name">George Gamma</td>
+                                <td data-label="Email">george@email.com</td>
+                                <td data-label="Status">Offline</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Index">4</td>
+                                <td data-label="Name">Daniel Delta</td>
+                                <td data-label="Email">danny@email.com</td>
+                                <td data-label="Status">Online</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;table>
+    &lt;thead>
+    &lt;tr>
+        &lt;th>Index&lt;/th>
+        &lt;th>Name&lt;/th>
+        &lt;th>Email&lt;/th>
+        &lt;th>Status&lt;/th>
+    &lt;/tr>
+    &lt;/thead>
+    &lt;tbody>
+    &lt;tr>
+        &lt;td data-label="Index">1&lt;/td>
+        &lt;td data-label="Name">Abraham Alpha&lt;/td>
+        &lt;td data-label="Email">abe@email.com&lt;/td>
+        &lt;td data-label="Status">Online&lt;/td>
+    &lt;/tr>
+    &lt;tr>
+        &lt;td data-label="Index">2&lt;/td>
+        &lt;td data-label="Name">Benjamin Beta&lt;/td>
+        &lt;td data-label="Email">ben@email.com&lt;/td>
+        &lt;td data-label="Status">Offline&lt;/td>
+    &lt;/tr>
+    &lt;tr>
+        &lt;td data-label="Index">3&lt;/td>
+        &lt;td data-label="Name">George Gamma&lt;/td>
+        &lt;td data-label="Email">george@email.com&lt;/td>
+        &lt;td data-label="Status">Offline&lt;/td>
+    &lt;/tr>
+    &lt;tr>
+        &lt;td data-label="Index">4&lt;/td>
+        &lt;td data-label="Name">Daniel Delta&lt;/td>
+        &lt;td data-label="Email">danny@email.com&lt;/td>
+        &lt;td data-label="Status">Online&lt;/td>
+    &lt;/tr>
+    &lt;/tbody>
+&lt;/table></code></pre>
+                </article>
+
+                <h4 id="dropdown">Dropdown</h4>
+                <article>
+                    <div class="example">
+                        <div class="dropdown-container">
+                            <div class="dropdown">
+                                <span>Dropdown (default)</span>
+                                <div class="dropdown-content">
+                                    <a class="dropdown-item">Link 1</a>
+                                    <a class="dropdown-item">Link 2</a>
+                                    <a class="dropdown-item">Link 3</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <span>Dropdown from top right</span>
+                                <div class="dropdown-content from-top-right">
+                                    <a class="dropdown-item">Link 1</a>
+                                    <a class="dropdown-item">Link 2</a>
+                                    <a class="dropdown-item">Link 3</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <span>Dropdown from bottom right</span>
+                                <div class="dropdown-content from-bottom-right">
+                                    <a class="dropdown-item">Link 1</a>
+                                    <a class="dropdown-item">Link 2</a>
+                                    <a class="dropdown-item">Link 3</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <span>Dropdown from bottom left</span>
+                                <div class="dropdown-content from-bottom-left">
+                                    <a class="dropdown-item">Link 1</a>
+                                    <a class="dropdown-item">Link 2</a>
+                                    <a class="dropdown-item">Link 3</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="dropdown">
+    &lt;p>Dropdown (default)&lt;/p>
+    &lt;div class="dropdown-content">
+        &lt;a class="dropdown-item">Link 1&lt;/a>
+        &lt;a class="dropdown-item">Link 2&lt;/a>
+        &lt;a class="dropdown-item">Link 3&lt;/a>
+    &lt;/div>
+&lt;/div>
+&lt;div class="dropdown">
+    &lt;p>Dropdown from top right&lt;/p>
+    &lt;div class="dropdown-content from-top-right">
+        &lt;a class="dropdown-item">Link 1&lt;/a>
+        &lt;a class="dropdown-item">Link 2&lt;/a>
+        &lt;a class="dropdown-item">Link 3&lt;/a>
+    &lt;/div>
+&lt;/div>
+&lt;div class="dropdown">
+    &lt;p>Dropdown from bottom right&lt;/p>
+    &lt;div class="dropdown-content from-bottom-right">
+        &lt;a class="dropdown-item">Link 1&lt;/a>
+        &lt;a class="dropdown-item">Link 2&lt;/a>
+        &lt;a class="dropdown-item">Link 3&lt;/a>
+    &lt;/div>
+&lt;/div>
+&lt;div class="dropdown">
+    &lt;p>Dropdown from bottom left&lt;/p>
+    &lt;div class="dropdown-content from-bottom-left">
+        &lt;a class="dropdown-item">Link 1&lt;/a>
+        &lt;a class="dropdown-item">Link 2&lt;/a>
+        &lt;a class="dropdown-item">Link 3&lt;/a>
+    &lt;/div>
+&lt;/div></code></pre>
+                </article>
+
+                <h4 id="tooltips">Tooltips</h4>
+                <article>
+                    <div class="example">
+                        <span data-tooltip-top="Tooltip on top">Hover me!</span><br>
+                        <span data-tooltip-right="Right">Hover me!</span><br>
+                        <span data-tooltip-left="Left">Hover me!</span><br>
+                        <span data-tooltip-bottom="Down under">Hover me!</span>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;span data-tooltip-top="Tooltip on top">Hover me!&lt;/span>
+&lt;span data-tooltip-right="Right">Hover me!&lt;/span>
+&lt;span data-tooltip-left="Left">Hover me!&lt;/span>
+&lt;span data-tooltip-bottom="Down under">Hover me!&lt;/span></code></pre>
+                </article>
+
+            </section>
+
+            <!-- Utilities -->
+            <section>
+
+                <h2>Utilities</h2>
+
+                <h6 id="link">Link</h6>
+                <article>
+                    <div class="example">
+                        <a href="" class="link">Link</a>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;a href="" class="link">Link&lt;/a></code></pre>
+                </article>
+
+                <h6 id="card">Card</h6>
+                <article>
+                    <div class="example">
+                        <div class="card align-center p-y-m">Card</div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="card">Card&lt;/div></code></pre>
+                </article>
+
+                <h6 id="align">Align</h6>
+                <article>
+                    <div class="example">
+                        <div class="align-left">Left</div>
+                        <div class="align-center">Center</div>
+                        <div class="align-right">Right</div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;p class="align-left">Left&lt;/p>
+&lt;p class="align-center">Center&lt;/p>
+&lt;p class="align-right">Right&lt;/p></code></pre>
+                </article>
+
+                <h6 id="hide-and-show">Hide & show</h6>
+                <article>
+                    <div class="example">
+                        <span class="hide-xs">Hide on extra-small screen</span><br>
+                        <span class="hide-s">Hide on small screen</span><br>
+                        <span class="hide-m">Hide on medium screen</span><br>
+                        <span class="show-xs">Show on extra-small screen</span><br>
+                        <span class="show-s">Show on small screen</span><br>
+                        <span class="show-m">Show on medium screen</span>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;span class="hide-xs">Hide on extra-small screen&lt;/span>
+&lt;span class="hide-s">Hide on small screen&lt;/span>
+&lt;span class="hide-m">Hide on medium screen&lt;/span>
+&lt;span class="show-xs">Show on extra-small screen&lt;/span>
+&lt;span class="show-s">Show on small screen&lt;/span>
+&lt;span class="show-m">Show on medium screen&lt;/span></code></pre>
+                </article>
+
+                <h6 id="flex">Flex</h6>
+                <p>A simple flexbox utility. Just add <code class="language-html">class="flex"</code> and complementary classes.</p>
+                <p>Flex direction</p>
+                <ul>
+                    <li><code class="language-html">fd-row</code></li>
+                    <li><code class="language-html">fd-col</code></li>
+                    <li><code class="language-html">fd-row-rev</code></li>
+                    <li><code class="language-html">fd-col-rev</code></li>
+                </ul>
+                <p>Align items</p>
+                <ul>
+                    <li><code class="language-html">ai-center</code></li>
+                    <li><code class="language-html">ai-start</code></li>
+                    <li><code class="language-html">ai-end</code></li>
+                    <li><code class="language-html">ai-stretch</code></li>
+                </ul>
+                <p>Justify content</p>
+                <ul>
+                    <li><code class="language-html">jc-center</code></li>
+                    <li><code class="language-html">jc-start</code></li>
+                    <li><code class="language-html">jc-end</code></li>
+                    <li><code class="language-html">jc-around</code></li>
+                    <li><code class="language-html">jc-between</code></li>
+                    <li><code class="language-html">jc-evenly</code></li>
+                </ul>
+                <article>
+                    <div class="example">
+                        <div class="flex fd-col ai-center">
+                            <span>First span</span>
+                            <span>Second span</span>
+                            <span>Third span</span>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="flex fd-col ai-center">
+    &lt;span>First span&lt;/span>
+    &lt;span>Second span&lt;/span>
+    &lt;span>Third span&lt;/span>
+&lt;/div></code></pre>
+                </article>
+                <article>
+                    <div class="example">
+                        <div class="flex jc-between">
+                            <span>First span</span>
+                            <span>Second span</span>
+                            <span>Third span</span>
+                        </div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="flex jc-between">
+    &lt;span>First span&lt;/span>
+    &lt;span>Second span&lt;/span>
+    &lt;span>Third span&lt;/span>
+&lt;/div></code></pre>
+                </article>
+
+                <h6 id="margin-and-padding">Margin & padding</h6>
+                <p>Syntax (example being <code class="language-html">class="p-a-m"</code>):</p>
+                <ul>
+                    <li><code class="language-html">p</code> meaning padding, can also be <code class="language-html">m</code> for margin,</li>
+                    <li><code class="language-html">a</code> meaning all sides, can also be <code class="language-html">x, y, t, r, b, l</code> for horizontal, vertical, top, right, bottom, and left,</li>
+                    <li><code class="language-html">m</code> meaning medium, can also be <code class="language-html">xs, s, l, xl</code> for extra small, small, large, and extra large.</li>
+                </ul>
+                <article>
+                    <div class="example">
+                        <div class="p-a-m">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="p-a-m">Lorem ipsum… &lt;/div></code></pre>
+                </article>
+                <article>
+                    <div class="example">
+                        <div class="p-x-l p-y-s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="p-x-l p-y-s">Lorem ipsum… &lt;/div></code></pre>
+                </article>
+                <article>
+                    <div class="example">
+                        <div class="m-b-l">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;div class="m-b-l">Lorem ipsum… &lt;/div>
+&lt;div>Lorem ipsum… &lt;/div></code></pre>
+                </article>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div id="modalID" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">Header</div>
+        <div class="modal-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="modal-footer"><button data-close-modal>Close</button></div>
+    </div>
+</div>
+
+</body>
+
+</html>
