@@ -40,11 +40,23 @@ Each component can also be imported separately as scss or css.
 @import "node_modules/@jaspero/pix/components/dropdown.scss";
 ```
 
+### Javascript
+
+Some components like tabs and dropdown for example, require javascript to run. Generally speaking this is very simple js
+mostly adding and removing active classes. Examples for each of the components can be found in this repo.
+
+However, we don't publish the js along with styles because our personal preference is having a consistent stlye sheet
+and using what ever freamework or vanilla javascript in a particular project for manipulating the components.
+
 ## Documentation
 
 For a detailed breakdown please visit:
 
 https://pix-css.firebaseapp.com/
+
+## Showcase
+
+Nothing to showcase just yet.
 
 ## License
 
