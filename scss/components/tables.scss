@@ -1,0 +1,78 @@
+@import "../essentials/variables";
+/*==================================================
+
+  Tables
+
+==================================================*/
+
+
+/*
+ * General
+ */
+
+table {
+  width           : 100%;
+  border-collapse : collapse;
+  text-align      : left;
+
+  thead {
+    tr {
+      border    : .1rem solid #ccc;
+      background: rgba(0,0,0,.05);
+    }
+    th {
+      padding   : .6rem;
+      font-size : 1.1rem;
+    }
+  }
+
+  tbody {
+    tr {
+      border: .1rem solid #ccc;
+    }
+    tr:hover {
+      background: rgba(0,0,0,.05);
+    }
+    td {
+      padding   : 1.2rem .8rem;
+      font-size : 1.2rem;
+    }
+  }
+
+}
+
+
+/*
+ * Smaller screen layout
+ */
+
+@media screen and (max-width: $screen-s) {
+
+  table {
+    box-shadow: none;
+
+    tr {
+      display   : block;
+      margin    : 1rem 0;
+      box-shadow: 0 .1rem .3rem 0 rgba(0,0,0,0.2);
+    }
+
+    td {
+      display   : block;
+      text-align: right;
+    }
+
+    td:before {
+      content : attr(data-label);
+      float   : left;
+    }
+
+    thead {
+      opacity : 0;
+      position: absolute;
+      z-index : -1;
+    }
+
+  }
+
+}

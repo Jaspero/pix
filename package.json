@@ -1,0 +1,34 @@
+{
+  "name": "@jaspero/pix",
+  "version": "0.1.0",
+  "description": "An easy to use alert library for Angular",
+  "scripts": {
+    "build": "node-sass index.scss dist/index.css",
+    "build:watch": "npm run build -- -w",
+    "build:minified": "node-sass index.scss dist/index.min.css --source-map true --output-style compressed",
+    "build:components": "node-sass scss/ -o dist/",
+    "build:components:minified": "node-sass scss/ -o dist/ --source-map true --output-style compressed",
+    "publish": "npm run build && npm run build:minified && npm run build:components && npm run build:components:minfied && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jaspero/pix"
+  },
+  "author": {
+    "name": "Jaspero co.",
+    "email": "info@jaspero.co"
+  },
+  "keywords": [
+    "css",
+    "scss",
+    "boilerplate",
+    "framework"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jaspero/pix/issues"
+  },
+  "devDependencies": {
+    "node-sass": "4.8.3"
+  }
+}

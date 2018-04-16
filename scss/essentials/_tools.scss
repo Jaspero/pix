@@ -1,0 +1,43 @@
+/*==================================================
+
+  Tools
+
+==================================================*/
+
+
+/*
+ * Fluid function
+ */
+
+$low-screen-limit : 600px;
+$high-screen-limit: 1600px;
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid($max, $min, $prop) {
+  & {
+    #{$prop}: $min;
+    @media screen and (min-width: $low-screen-limit) {
+      #{$prop}: calc(#{$min} + #{strip-unit($max - $min)} * ((100vw - #{$low-screen-limit}) / #{strip-unit($high-screen-limit - $low-screen-limit)}));
+    }
+    @media screen and (min-width: $high-screen-limit) {
+      #{$prop}: $max;
+    }
+  }
+}
+
+
+/*
+ * Lighten & darken functions
+ */
+
+@function lighten($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function darken($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+

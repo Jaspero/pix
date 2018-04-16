@@ -1,0 +1,95 @@
+/*==================================================
+
+  Dropdown
+
+==================================================*/
+
+
+/*
+ * General
+ */
+
+.dropdown {
+  display : inline-block;
+  cursor  : pointer;
+  position: relative;
+}
+
+
+/*
+ * Dropdown content
+ */
+
+.dropdown-content {
+  opacity         : 0;
+  overflow-y      : auto;
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  z-index         : -1;
+  min-width       : 20rem;
+  max-height      : 30rem;
+  border-radius   : .2rem;
+  box-shadow      : 0 .2rem .4rem 0 rgba(0,0,0,.2);
+  padding         : 1rem 0;
+  background      : white;
+  text-align      : left;
+  transform-origin: 0 0;
+  transform       : scale3d(.8,.8,1);
+  transition      : .2s;
+
+  &.from-top-right {
+    top             : 0;
+    right           : 0;
+    bottom          : unset;
+    left            : unset;
+    transform-origin: 100% 0;
+    text-align      : right;
+  }
+
+  &.from-bottom-left {
+    top             : unset;
+    right           : unset;
+    bottom          : 0;
+    left            : 0;
+    transform-origin: 0 100%;
+    text-align      : left;
+  }
+
+  &.from-bottom-right {
+    top             : unset;
+    right           : 0;
+    bottom          : 0;
+    left            : unset;
+    transform-origin: 100% 100%;
+    text-align      : right;
+  }
+
+}
+
+
+/*
+ * Active
+ */
+
+.dropdown.active .dropdown-content {
+  opacity   : 1;
+  z-index   : 1;
+  transform : scale3d(1,1,1);
+}
+
+
+/*
+ * Dropdown item
+ */
+
+.dropdown-item {
+  display : block;
+  padding : .5rem 1rem;
+  cursor  : pointer;
+
+  &:hover {
+    background: #eee;
+  }
+
+}

@@ -1,0 +1,183 @@
+@import "../essentials/variables";
+@import "../essentials/tools";
+/*==================================================
+
+  Utilities
+
+==================================================*/
+
+
+/*==============================
+  Decorative utilities
+==============================*/
+
+
+/*
+ * Link
+ */
+
+.link {
+  cursor              : pointer;
+  text-decoration     : underline;
+  text-decoration-skip: ink;
+  color               : dodgerblue;
+
+  &:visited {
+    color: mediumpurple;
+  }
+
+}
+
+
+/*
+ * Card
+ */
+
+.card {
+  background: white;
+  box-shadow: 0 .2rem .4rem rgba(0,0,0,.3);
+}
+
+
+/*==============================
+  Constructive utilities
+==============================*/
+
+
+/*
+ * Flex
+ */
+
+.flex {
+  display   : flex;
+  height    : 100%;
+  flex-wrap : wrap;
+
+  &.fd-row { flex-direction: row; }
+  &.fd-col { flex-direction: column; }
+
+  &.ai-center   { align-items: center; }
+  &.ai-start    { align-items: flex-start; }
+  &.ai-end      { align-items: flex-end; }
+  &.ai-stretch  { align-items: stretch; }
+
+  &.jc-center   { justify-content: center; }
+  &.jc-start    { justify-content: flex-start; }
+  &.jc-end      { justify-content: flex-end; }
+  &.jc-around   { justify-content: space-around; }
+  &.jc-between  { justify-content: space-between; }
+  &.jc-evenly   { justify-content: space-evenly; }
+
+}
+
+
+/*
+ * Text align
+ */
+
+.align-left     { text-align: left; }
+.align-center   { text-align: center; }
+.align-right    { text-align: right; }
+.align-justify  { text-align: justify; }
+
+
+/*
+ * Hide & show
+ */
+
+.hide-xs  { @media (max-width: $screen-xs) { display: none; } }
+.hide-s   { @media (max-width: $screen-s) { display: none; } }
+.hide-m   { @media (max-width: $screen-m) { display: none; } }
+
+.show-xs  { display: none; @media (max-width: $screen-xs) { display: inline-block; } }
+.show-s   { display: none; @media (max-width: $screen-s) { display: inline-block; } }
+.show-m   { display: none; @media (max-width: $screen-m) { display: inline-block; } }
+
+
+/*
+ * Paddings & margins
+ */
+
+.p-a-xs { @include fluid(10px, 5px, padding); }
+.p-a-s  { @include fluid(20px, 10px, padding); }
+.p-a-m  { @include fluid(40px, 20px, padding); }
+.p-a-l  { @include fluid(80px, 40px, padding); }
+.p-a-xl { @include fluid(160px, 80px, padding); }
+
+.p-x-xs { @include fluid(10px, 5px, padding-left); @include fluid(10px, 5px, padding-right); }
+.p-x-s  { @include fluid(20px, 10px, padding-left); @include fluid(20px, 10px, padding-right); }
+.p-x-m  { @include fluid(40px, 20px, padding-left); @include fluid(40px, 20px, padding-right); }
+.p-x-l  { @include fluid(80px, 40px, padding-left); @include fluid(80px, 40px, padding-right); }
+.p-x-xl { @include fluid(160px, 80px, padding-left); @include fluid(160px, 80px, padding-right); }
+
+.p-y-xs { @include fluid(10px, 5px, padding-top); @include fluid(10px, 5px, padding-bottom); }
+.p-y-s  { @include fluid(20px, 10px, padding-top); @include fluid(20px, 10px, padding-bottom); }
+.p-y-m  { @include fluid(40px, 20px, padding-top); @include fluid(40px, 20px, padding-bottom); }
+.p-y-l  { @include fluid(80px, 40px, padding-top); @include fluid(80px, 40px, padding-bottom); }
+.p-y-xl { @include fluid(160px, 80px, padding-top); @include fluid(160px, 80px, padding-bottom); }
+
+.p-t-xs { @include fluid(10px, 5px, padding-top); }
+.p-t-s  { @include fluid(20px, 10px, padding-top); }
+.p-t-m  { @include fluid(40px, 20px, padding-top); }
+.p-t-l  { @include fluid(80px, 40px, padding-top); }
+.p-t-xl { @include fluid(160px, 80px, padding-top); }
+
+.p-r-xs { @include fluid(10px, 5px, padding-right); }
+.p-r-s  { @include fluid(20px, 10px, padding-right); }
+.p-r-m  { @include fluid(40px, 20px, padding-right); }
+.p-r-l  { @include fluid(80px, 40px, padding-right); }
+.p-r-xl { @include fluid(160px, 80px, padding-right); }
+
+.p-b-xs { @include fluid(10px, 5px, padding-bottom); }
+.p-b-s  { @include fluid(20px, 10px, padding-bottom); }
+.p-b-m  { @include fluid(40px, 20px, padding-bottom); }
+.p-b-l  { @include fluid(80px, 40px, padding-bottom); }
+.p-b-xl { @include fluid(160px, 80px, padding-bottom); }
+
+.p-l-xs { @include fluid(10px, 5px, padding-left); }
+.p-l-s  { @include fluid(20px, 10px, padding-left); }
+.p-l-m  { @include fluid(40px, 20px, padding-left); }
+.p-l-l  { @include fluid(80px, 40px, padding-left); }
+.p-l-xl { @include fluid(160px, 80px, padding-left); }
+
+.m-a-xs { @include fluid(10px, 5px, margin); }
+.m-a-s  { @include fluid(20px, 10px, margin); }
+.m-a-m  { @include fluid(40px, 20px, margin); }
+.m-a-l  { @include fluid(80px, 40px, margin); }
+.m-a-xl { @include fluid(160px, 80px, margin); }
+
+.m-x-xs { @include fluid(10px, 5px, margin-left); @include fluid(10px, 5px, margin-right); }
+.m-x-s  { @include fluid(20px, 10px, margin-left); @include fluid(20px, 10px, margin-right); }
+.m-x-m  { @include fluid(40px, 20px, margin-left); @include fluid(40px, 20px, margin-right); }
+.m-x-l  { @include fluid(80px, 40px, margin-left); @include fluid(80px, 40px, margin-right); }
+.m-x-xl { @include fluid(160px, 80px, margin-left); @include fluid(160px, 80px, margin-right); }
+
+.m-y-xs { @include fluid(10px, 5px, margin-top); @include fluid(10px, 5px, margin-bottom); }
+.m-y-s  { @include fluid(20px, 10px, margin-top); @include fluid(20px, 10px, margin-bottom); }
+.m-y-m  { @include fluid(40px, 20px, margin-top); @include fluid(40px, 20px, margin-bottom); }
+.m-y-l  { @include fluid(80px, 40px, margin-top); @include fluid(80px, 40px, margin-bottom); }
+.m-y-xl { @include fluid(160px, 80px, margin-top); @include fluid(160px, 80px, margin-bottom); }
+
+.m-t-xs { @include fluid(10px, 5px, margin-top); }
+.m-t-s  { @include fluid(20px, 10px, margin-top); }
+.m-t-m  { @include fluid(40px, 20px, margin-top); }
+.m-t-l  { @include fluid(80px, 40px, margin-top); }
+.m-t-xl { @include fluid(160px, 80px, margin-top); }
+
+.m-r-xs { @include fluid(10px, 5px, margin-right); }
+.m-r-s  { @include fluid(20px, 10px, margin-right); }
+.m-r-m  { @include fluid(40px, 20px, margin-right); }
+.m-r-l  { @include fluid(80px, 40px, margin-right); }
+.m-r-xl { @include fluid(160px, 80px, margin-right); }
+
+.m-b-xs { @include fluid(10px, 5px, margin-bottom); }
+.m-b-s  { @include fluid(20px, 10px, margin-bottom); }
+.m-b-m  { @include fluid(40px, 20px, margin-bottom); }
+.m-b-l  { @include fluid(80px, 40px, margin-bottom); }
+.m-b-xl { @include fluid(160px, 80px, margin-bottom); }
+
+.m-l-xs { @include fluid(10px, 5px, margin-left); }
+.m-l-s  { @include fluid(20px, 10px, margin-left); }
+.m-l-m  { @include fluid(40px, 20px, margin-left); }
+.m-l-l  { @include fluid(80px, 40px, margin-left); }
+.m-l-xl { @include fluid(160px, 80px, margin-left); }

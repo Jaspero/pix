@@ -1,0 +1,35 @@
+/*==================================================
+
+  Base
+
+==================================================*/
+
+
+/*
+ * Box sizing
+ */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+/*
+ * Page setup
+ */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  margin      : 0;
+  overflow-x  : hidden;
+  min-height  : 100vh;
+}

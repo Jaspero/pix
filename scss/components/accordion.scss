@@ -1,0 +1,49 @@
+/*==================================================
+
+  Accordion
+
+==================================================*/
+
+
+/*
+ * General
+ */
+
+.accordion {
+  display   : block;
+  overflow  : hidden;
+  transition: .2s;
+
+  &.active > .accordion-summary:after {
+    transform: rotate(-90deg);
+  }
+
+}
+
+
+/*
+ * Accordion summary
+ */
+
+.accordion-summary {
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  cursor          : pointer;
+  user-select     : none;
+  padding         : 1rem;
+  margin          : 0;
+  background      : #eee;
+  color           : #444;
+  transition      : 0.2s;
+
+  &:after {
+    content   : url('../../imgs/caret.svg');
+    transition: .2s;
+  }
+
+  &:hover {
+    background: #ddd;
+  }
+
+}

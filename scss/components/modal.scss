@@ -1,0 +1,60 @@
+/*==================================================
+
+  Modal
+  
+==================================================*/
+
+
+/*
+ * General
+ */
+
+.modal {
+  display         : none;
+  align-items     : center;
+  justify-content : center;
+  position        : fixed;
+  top             : 0;
+  left            : 0;
+  z-index         : -1;
+  width           : 100%;
+  height          : 100%;
+  background      : rgba(0,0,0,.5);
+
+  &.active {
+    display : flex;
+    z-index : 10;
+  }
+
+}
+
+
+/*
+ * Modal content
+ */
+
+.modal-content {
+  box-shadow: 0 .4rem .8rem rgba(0,0,0,.4);
+  margin    : 2rem;
+  background: white;
+
+  .modal-body {
+    overflow-y: scroll;
+    padding   : 2rem;
+    max-width : 80rem;
+  }
+
+  .modal-header {
+    padding       : 2rem;
+    border-bottom : .1rem solid #ddd;
+    background    : #eee;
+  }
+
+  .modal-footer {
+    padding   : 2rem;
+    border-top: .1rem solid #ddd;
+    text-align: right;
+    background: #eee;
+  }
+
+}
