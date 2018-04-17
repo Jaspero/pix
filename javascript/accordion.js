@@ -1,61 +1,65 @@
-/*==================================================
+export class Accordion {
+  constructor() {
+    this.activeClassName = 'active';
+    this.accordionClassName = 'accordion';
+    this.summaryClassName = 'accordion-summary';
+    this.accordionElements = document.querySelectorAll('.' + this.accordionClassName);
+    this.run();
+  }
 
-  Accordion
+  open(accordionEl) {
+    const height = accordionEl.scrollHeight;
+    accordionEl.style.maxHeight = height + 'px';
+    let parent = accordionEl.parentElement;
 
-==================================================*/
-
-window.onload = () => {
-
-    const activeClassName = 'active';
-    const accordionClassName = 'accordion';
-    const summaryClassName = 'accordion_summary';
-    const accordionElements = document.querySelectorAll('.' + accordionClassName);
-
-    function open(accordionEl) {
-        const height = accordionEl.scrollHeight;
-        accordionEl.style.maxHeight = height + 'px';
-        let parent = accordionEl.parentElement;
-
-        while (parent) {
-            if (parent.classList.contains(accordionClassName)) {
-                const currentMaxHeight = parseInt(parent.style.maxHeight.replace('px', ''));
-                parent.style.maxHeight = (currentMaxHeight + height) + 'px';
-            }
-            parent = parent.parentElement;
-        }
-        accordionEl.classList.add(activeClassName);
+    while (parent) {
+      if (parent.classList.contains(this.accordionClassName)) {
+        const currentMaxHeight = parseInt(parent.style.maxHeight.replace('px', ''));
+        parent.style.maxHeight = (currentMaxHeight + height) + 'px';
+      }
+      parent = parent.parentElement;
     }
+    accordionEl.classList.add(this.activeClassName);
+  }
 
-    function close(accordionEl, summeryEl) {
-        const height = accordionEl.scrollHeight - summeryEl.scrollHeight;
-        accordionEl.style.maxHeight = summeryEl.scrollHeight + 'px';
-        let parent = accordionEl.parentElement;
-        while (parent) {
+  close(accordionEl, summeryEl) {
+    const height = accordionEl.scrollHeight - summeryEl.scrollHeight;
+    accordionEl.style.maxHeight = summeryEl.scrollHeight + 'px';
+    let parent = accordionEl.parentElement;
+    while (parent) {
 
-            if (parent.classList.contains(accordionClassName)) {
-                const currentMaxHeight = parseInt(parent.style.maxHeight.replace('px', ''));
-                parent.style.maxHeight = (currentMaxHeight - height) + 'px';
-            }
-            parent = parent.parentElement;
-        }
-        accordionEl.classList.remove(activeClassName);
+      if (parent.classList.contains(this.accordionClassName)) {
+        const currentMaxHeight = parseInt(parent.style.maxHeight.replace('px', ''));
+        parent.style.maxHeight = (currentMaxHeight - height) + 'px';
+      }
+      parent = parent.parentElement;
     }
+    accordionEl.classList.remove(this.activeClassName);
+  }
 
-    accordionElements.forEach(accordionEl => {
-        const summeryEl = accordionEl.querySelector('.' + summaryClassName);
-        let active = accordionEl.classList.contains(activeClassName);
+  run() {
+    this.accordionElements.forEach(accordionEl => {
+      const summeryEl = accordionEl.querySelector('.' + this.summaryClassName);
+
+      let active = accordionEl.classList.contains(this.activeClassName);
+
+      if (summeryEl) {
+
         if (active) {
-            open(accordionEl);
+          this.open(accordionEl);
         } else {
-            close(accordionEl, summeryEl);
+          this.close(accordionEl, summeryEl);
         }
+
         summeryEl.addEventListener('click', () => {
-            if (active) {
-                close(accordionEl, summeryEl);
-            } else {
-                open(accordionEl);
-            }
-            active = !active;
+          if (active) {
+            this.close(accordionEl, summeryEl);
+          } else {
+            this.open(accordionEl);
+          }
+          active = !active;
         })
-    })
-};
+      }
+    });
+  }
+}

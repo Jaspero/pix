@@ -1,41 +1,38 @@
-/*==================================================
+export class Dropdown {
+    constructor() {
+      this.dropdown = document.querySelectorAll('.dropdown');
+      this.run();
+    }
 
-  Dropdown
-
-==================================================*/
-
-window.onload = () => {
-
-    const dropdown = document.querySelectorAll('.dropdown');
-
-    dropdown.forEach(el => {
+    run() {
+      this.dropdown.forEach(el => {
 
         const dropdownContent = el.querySelector('[class*="dropdown_content"]');
-        console.log(dropdownContent);
 
         el.addEventListener('click', (event) => {
 
-            event.stopPropagation();
+          event.stopPropagation();
 
-            dropdown.forEach(el => {
-                el.classList.remove('active');
-            });
-
-            el.classList.add('active');
-
-            dropdownContent.addEventListener('click', (event) => {
-                event.stopPropagation();
-                dropdownContent.parentElement.classList.remove('active');
-            });
-
-        });
-
-    });
-
-    window.addEventListener('click', () => {
-        dropdown.forEach(el => {
+          this.dropdown.forEach(el => {
             el.classList.remove('active');
-        });
-    });
+          });
 
-};
+          el.classList.add('active');
+
+          if (dropdownContent) {
+            dropdownContent.addEventListener('click', (event) => {
+              event.stopPropagation();
+              dropdownContent.parentElement.classList.remove('active');
+            });
+          }
+        });
+
+      });
+
+      window.addEventListener('click', () => {
+        this.dropdown.forEach(el => {
+          el.classList.remove('active');
+        });
+      });
+    }
+}
