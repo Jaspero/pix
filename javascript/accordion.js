@@ -2,7 +2,7 @@ export class Accordion {
   constructor() {
     this.activeClassName = 'active';
     this.accordionClassName = 'accordion';
-    this.summaryClassName = 'accordion_summary';
+    this.summaryClassName = 'accordion-summary';
     this.accordionElements = document.querySelectorAll('.' + this.accordionClassName);
     this.run();
   }
