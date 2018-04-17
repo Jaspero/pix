@@ -58,3 +58,14 @@
   }
 
 }
+
+
+/*
+ * Class for html when modal is opened,
+ * to disable background scrolling
+ */
+
+.modal-opened {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
