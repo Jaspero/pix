@@ -1,4 +1,6 @@
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![NPM Version](https://img.shields.io/npm/v/@jaspero/pix.svg)](https://www.npmjs.com/package/@jaspero/pix)
+
 # Pix
 A modern css/scss boilerplate framework. Pix is dead simple and completely modular,
 designed to get projects of the ground quickly.
@@ -60,6 +62,14 @@ and using what ever freamework or vanilla javascript in a particular project for
 For a detailed breakdown please visit:
 
 https://pix-css.firebaseapp.com/
+
+## Frequently Asked Questions
+
+### Can every component be used independently of one another?
+
+### Why aren't tools and variables published as css?
+
+`_tools.scss` and `_variables.scss` are purely scss constructs and would produce no output as css files.
 
 ## Showcase
 
