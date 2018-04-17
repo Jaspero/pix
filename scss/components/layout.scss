@@ -3,3 +3,55 @@
   Layout
 
 ==================================================*/
+
+
+.box {
+  padding       : 2rem 0;
+  border-radius : .4rem;
+  color         : white;
+  text-align    : center;
+  background    : #555;
+}
+
+.tabs, pre {
+  max-width: calc(100vw - 20px);
+}
+
+.dropdown-container {
+  height: 15rem;
+  position: relative;
+  .dropdown {
+    position: absolute;
+    &:nth-child(1){ top: 0; left: 0; }
+    &:nth-child(2){ top: 0; right: 0; }
+    &:nth-child(3){ bottom: 0; right: 0; }
+    &:nth-child(4){ bottom: 0; left: 0; }
+  }
+}
+
+article {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+}
+
+.example {
+  padding: 2rem;
+}
+
+.fluid-example {
+  @include fluid(50px, 20px, font-size);
+}
+
+.intro {
+  background: #F9F9FF;
+  .logo {
+    font-size: 3rem;
+  }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #F9F9FF;
+}

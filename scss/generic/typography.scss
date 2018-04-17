@@ -10,23 +10,14 @@
  */
 
 html {
-  font-family : sans-serif;
+  font-family: 'IBM Plex Sans', serif;
   font-size   : 62.5%;
   line-height : 1.5;
+  color       : #555;
 }
 
 body {
-  font-size: 1.4rem;
-}
-
-
-/*
- * Resets
- */
-
-h1, h2, h3, h4, h5, h6,
-p, ul, ol {
-  margin: 0;
+  font-size: 1.3rem;
 }
 
 
@@ -35,38 +26,52 @@ p, ul, ol {
  */
 
 h1 {
+  margin      : 0;
   font-size   : 3.6rem;
   font-weight : normal;
 }
 
 h2 {
+  margin      : 12rem 0 2rem 0;
   font-size   : 3.2rem;
   font-weight : normal;
 }
 
 h3 {
+  margin      : 0;
   font-size   : 2.8rem;
   font-weight : normal;
 }
 
 h4 {
+  margin      : 6rem 0 2rem 0;
   font-size   : 2.4rem;
   font-weight : normal;
 }
 
 h5 {
+  margin      : 0;
   font-size   : 2.0rem;
   font-weight : normal;
 }
 
 h6 {
+  margin      : 3rem 0 2rem 0;
   font-size   : 1.6rem;
   font-weight : normal;
 }
 
 p {
-  font-size   : 1.4rem;
+  margin      : 0 0 2rem 0;
   font-weight : normal;
+}
+
+ul, ol {
+  margin: 0 0 2rem 0;
+}
+
+p + ul, p + ol {
+  margin-top: -1.5rem;
 }
 
 a {
@@ -94,4 +99,30 @@ img {
   max-width     : 100%;
   font-style    : italic;
   vertical-align: middle;
+}
+
+svg {
+  fill: #555;
+}
+
+pre {
+  &[class*="language-"][class*="language-"] { margin: 0; }
+  &.html  { border-left: .4rem solid $html; }
+  &.css   { border-left: .4rem solid $css; }
+  &.js    { border-left: .4rem solid $js; }
+}
+
+code {
+  font-size: 1.1rem;
+}
+
+article {
+  margin: 0 0 2rem 0;
+}
+
+.example {
+  h1, h2, h3, h4, h5, h6, p,
+  ol, ul {
+    margin: 0;
+  }
 }
