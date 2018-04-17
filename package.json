@@ -1,15 +1,16 @@
 {
   "name": "@jaspero/pix",
   "version": "0.1.0",
-  "description": "An easy to use alert library for Angular",
+  "description": "A modern css/scss boilerplate framework. ",
   "scripts": {
     "build": "node-sass index.scss dist/index.css",
     "build:watch": "npm run build -- -w",
     "build:minified": "node-sass index.scss dist/index.min.css --source-map true --output-style compressed",
     "build:components": "node-sass scss/ -o dist/",
     "build:components:minified": "node-sass scss/ -o dist/ --source-map true --output-style compressed",
-    "publish": "npm run build && npm run build:minified && npm run build:components && npm run build:components:minfied && npm publish",
-    "deploy": "npm run build:minified && firebase deploy"
+    "publish": "npm run build && npm run build:minified && npm run build:components:minfied && npm publish",
+    "deploy": "npm run build:minified && firebase deploy",
+    "clean": "rimraf dist/index.css dist/index.min.css dist/index.min.css.map dist/utilities dist/generic dist/components"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "url": "https://github.com/Jaspero/pix/issues"
   },
   "devDependencies": {
-    "node-sass": "4.8.3"
+    "node-sass": "4.8.3",
+    "rimraf": "2.6.2"
   }
 }
