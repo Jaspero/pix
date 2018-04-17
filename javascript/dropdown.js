@@ -19,11 +19,12 @@ export class Dropdown {
 
           el.classList.add('active');
 
-          dropdownContent.addEventListener('click', (event) => {
-            event.stopPropagation();
-            dropdownContent.parentElement.classList.remove('active');
-          });
-
+          if (dropdownContent) {
+            dropdownContent.addEventListener('click', (event) => {
+              event.stopPropagation();
+              dropdownContent.parentElement.classList.remove('active');
+            });
+          }
         });
 
       });

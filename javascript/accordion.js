@@ -43,19 +43,23 @@ export class Accordion {
 
       let active = accordionEl.classList.contains(this.activeClassName);
 
-      if (active) {
-        this.open(accordionEl);
-      } else {
-        this.close(accordionEl, summeryEl);
-      }
-      summeryEl.addEventListener('click', () => {
+      if (summeryEl) {
+
         if (active) {
-          this.close(accordionEl, summeryEl);
-        } else {
           this.open(accordionEl);
+        } else {
+          this.close(accordionEl, summeryEl);
         }
-        active = !active;
-      })
+
+        summeryEl.addEventListener('click', () => {
+          if (active) {
+            this.close(accordionEl, summeryEl);
+          } else {
+            this.open(accordionEl);
+          }
+          active = !active;
+        })
+      }
     });
   }
 }

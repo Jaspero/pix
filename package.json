@@ -4,6 +4,7 @@
   "description": "A modern css/scss boilerplate framework. ",
   "scripts": {
     "build": "node-sass index.scss dist/index.css",
+    "build:js": "parcel build index.js",
     "build:watch": "npm run build -- -w",
     "build:minified": "node-sass index.scss dist/index.min.css --source-map true --output-style compressed",
     "build:components": "node-sass scss/ -o dist/",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "node-sass": "4.8.3",
+    "parcel-bundler": "^1.7.1",
     "rimraf": "2.6.2"
   }
 }
