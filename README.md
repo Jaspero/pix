@@ -67,6 +67,8 @@ https://pix-css.firebaseapp.com/
 
 ### Can every component be used independently of one another?
 
+CSS files are independent. Some SCSS files aren't - those that use variables and functions.
+
 ### Why aren't tools and variables published as css?
 
 `_tools.scss` and `_variables.scss` are purely scss constructs and would produce no output as css files.
