@@ -33,6 +33,7 @@
                     <a class="dropdown-item" href="#typography">Typography</a>
                     <a class="dropdown-item" href="#buttons">Buttons</a>
                     <a class="dropdown-item" href="#grid">Grid</a>
+                    <a class="dropdown-item" href="#loading">Loading</a>
                     <a class="dropdown-item" href="#form">Form</a>
                     <a class="dropdown-item" href="#accordion">Accordion</a>
                     <a class="dropdown-item" href="#modal">Modal</a>
@@ -283,6 +284,18 @@ button:hover, button:focus {
 &lt;/div></code></pre>
                 </article>
 
+                <h4 id="Loading">Loading</h4>
+                <article>
+                    <div class="example">
+                        <div class="align-center p-y-m">
+                            <svg class="loading-spinner"><circle cx="20" cy="20" r="18"></circle></svg>
+                        </div>
+                        <div class="loading-bar"></div>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;svg class="loading-spinner">&lt;circle cx="20" cy="20" r="18">&lt;/circle>&lt;/svg>
+&lt;div class="loading-bar">&lt;/div></code></pre>
+                </article>
+
                 <h4 id="form">Form</h4>
                 <p>Value for <code class="language-html">&lt;label class=""></code> can be one of the following:</p>
                 <ul>
@@ -299,133 +312,290 @@ button:hover, button:focus {
                 </ul>
                 <article>
                     <div class="example">
-                        <label for="email" class="block">
-                            <span>Your email</span>
-                            <input type="email" id="email" name="" placeholder="e.g. john@doe.com">
-                        </label>
-                        <br>
-                        <label for="option" class="block">
-                            <span>Options</span>
-                            <select id="option" name="">
-                                <option value="">First option</option>
-                                <option value="">Second</option>
-                                <option value="">Third</option>
-                            </select>
-                        </label>
-                        <br>
-                        <label for="message" class="block">
-                            <span>Your message</span>
-                            <textarea id="message" name="" rows="4" placeholder="Hi, I'd like to say…"></textarea>
-                        </label>
-                        <br>
-                        <label for="toggle" class="space-between">
-                            <span>Toggle</span>
-                            <input type="checkbox" id="toggle" name="">
-                            <div class="toggle"></div>
-                        </label>
-                        <br>
-                        <fieldset class="block">
-                            <legend>Legend</legend>
-                            <label for="checkbox1" class="inline">
-                                <input type="checkbox" id="checkbox1" name="">
-                                <div class="checkbox"></div>
-                                <span>One</span>
+                        <form action="">
+
+                            <div class="form-group-title">Personal</div>
+
+                            <label for="name" class="field">
+                                <span>Name</span>
+                                <input type="text" id="name" name="" placeholder="John Doe">
                             </label>
-                            <label for="checkbox2" class="inline">
-                                <input type="checkbox" id="checkbox2" name="">
-                                <div class="checkbox"></div>
-                                <span>Two</span>
+
+                            <fieldset>
+                                <legend>Date of birth</legend>
+                                <div class="fields">
+                                    <label for="day" class="field select">
+                                        <select id="day" name="">
+                                            <option value="">Day</option>
+                                            <option value="">Lorem</option>
+                                            <option value="">Ipsum</option>
+                                        </select>
+                                    </label>
+                                    <label for="month" class="field select">
+                                        <select id="month" name="">
+                                            <option value="">Month</option>
+                                            <option value="">Lorem</option>
+                                            <option value="">Ipsum</option>
+                                        </select>
+                                    </label>
+                                    <label for="year" class="field select">
+                                        <select id="year" name="">
+                                            <option value="">Year</option>
+                                            <option value="">Lorem</option>
+                                            <option value="">Ipsum</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>What colors do you like?</legend>
+                                <label for="red" class="checkbox">
+                                    <input type="checkbox" id="red" name="">
+                                    <div class="control"></div>
+                                    <span>Red</span>
+                                </label>
+                                <label for="green" class="checkbox">
+                                    <input type="checkbox" id="green" name="">
+                                    <div class="control"></div>
+                                    <span>Green</span>
+                                </label>
+                                <label for="blue" class="checkbox">
+                                    <input type="checkbox" id="blue" name="">
+                                    <div class="control"></div>
+                                    <span>Blue</span>
+                                </label>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>What is your favorite animal?</legend>
+                                <div class="selector">
+                                    <label for="radio1" class="radio-select">
+                                        <input type="radio" id="radio1" name="radio">
+                                        <span class="control">Lion</span>
+                                    </label>
+                                    <label for="radio2" class="radio-select">
+                                        <input type="radio" id="radio2" name="radio">
+                                        <span class="control">Tiger</span>
+                                    </label>
+                                    <label for="radio3" class="radio-select">
+                                        <input type="radio" id="radio3" name="radio">
+                                        <span class="control">Bear</span>
+                                    </label>
+                                    <label for="radio4" class="radio-select">
+                                        <input type="radio" id="radio4" name="radio">
+                                        <span class="control">Cat</span>
+                                    </label>
+                                    <label for="radio5" class="radio-select">
+                                        <input type="radio" id="radio5" name="radio">
+                                        <span class="control">Dog</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <div class="form-group-title">Account</div>
+
+                            <label for="email" class="field">
+                                <span>Email</span>
+                                <input type="email" id="email" name="" placeholder="john@johndoe.com">
                             </label>
-                            <label for="checkbox3" class="inline">
-                                <input type="checkbox" id="checkbox3" name="">
-                                <div class="checkbox"></div>
-                                <span>Three</span>
+
+                            <label for="password" class="field">
+                                <span>Password</span>
+                                <input type="password" id="password" name="">
                             </label>
-                        </fieldset>
-                        <br>
-                        <fieldset class="split-evenly">
-                            <legend>Legend</legend>
-                            <label for="radio1" class="centered">
-                                <input type="radio" id="radio1" name="radio">
-                                <div class="radio"></div>
-                                <span>One</span>
+
+                            <div class="form-group-title">Contact</div>
+
+                            <label for="address" class="field">
+                                <span>Address</span>
+                                <input type="text" id="address" name="" placeholder="420 Lorem St.">
                             </label>
-                            <label for="radio2" class="centered">
-                                <input type="radio" id="radio2" name="radio">
-                                <div class="radio"></div>
-                                <span>Two</span>
+
+                            <label for="city" class="field">
+                                <span>City</span>
+                                <input type="text" id="city" name="" placeholder="Ipsum">
                             </label>
-                            <label for="radio3" class="centered">
-                                <input type="radio" id="radio3" name="radio">
-                                <div class="radio"></div>
-                                <span>Three</span>
+
+                            <label for="state" class="field select">
+                                <span>State</span>
+                                <select id="state" name="">
+                                    <option value="">-Select your state-</option>
+                                    <option value="">Lorem</option>
+                                    <option value="">Ipsum</option>
+                                </select>
                             </label>
-                        </fieldset>
+
+                            <label for="Phone" class="field">
+                                <span>Phone</span>
+                                <input type="tel" id="Phone" name="" placeholder="123-456-7890">
+                            </label>
+
+                            <div class="form-group-title">Other</div>
+
+                            <label for="toggle" class="toggle">
+                                <div class="toggle-text">
+                                    <div>Notifications</div>
+                                    <div style="opacity: .5;">Notifications will notify you about important events. You can change this.</div>
+                                </div>
+                                <input type="checkbox" id="toggle" name="">
+                                <div class="control"></div>
+                            </label>
+
+                            <label for="message" class="field">
+                                <span>Message</span>
+                                <textarea id="message" name="" rows="6" placeholder="Heyyy"></textarea>
+                            </label>
+
+                        </form>
                     </div>
-                    <pre class="html"><code class="language-html">&lt;label for="option" class="block">
-    &lt;span>Options&lt;/span>
-    &lt;select id="option" name="">
-        &lt;option value="">First option&lt;/option>
-        &lt;option value="">Second&lt;/option>
-        &lt;option value="">Third&lt;/option>
-    &lt;/select>
-&lt;/label>
-&lt;label for="message" class="block">
-    &lt;span>Your message&lt;/span>
-    &lt;textarea id="message" name="" rows="4" placeholder="Hi, I'd like to say…">&lt;/textarea>
-&lt;/label>
-&lt;label for="toggle" class="space-between">
-    &lt;span>Toggle&lt;/span>
-    &lt;input type="checkbox" id="toggle" name="">
-    &lt;div class="toggle">&lt;/div>
-&lt;/label>
-&lt;fieldset class="block">
-    &lt;legend>Legend&lt;/legend>
-    &lt;label for="checkbox1" class="inline">
-        &lt;input type="checkbox" id="checkbox1" name="">
-        &lt;div class="checkbox">&lt;/div>
-        &lt;span>One&lt;/span>
+                    <pre class="html"><code class="language-html">&lt;form action="">
+
+    &lt;div class="form-group-title">Personal&lt;/div>
+
+    &lt;label for="name" class="field">
+        &lt;span>Name&lt;/span>
+        &lt;input type="text" id="name" name="" placeholder="John Doe">
     &lt;/label>
-    &lt;label for="checkbox2" class="inline">
-        &lt;input type="checkbox" id="checkbox2" name="">
-        &lt;div class="checkbox">&lt;/div>
-        &lt;span>Two&lt;/span>
+
+    &lt;fieldset>
+        &lt;legend>Date of birth&lt;/legend>
+        &lt;div class="fields">
+            &lt;label for="day" class="field select">
+                &lt;select id="day" name="">
+                    &lt;option value="">Day&lt;/option>
+                    &lt;option value="">Lorem&lt;/option>
+                    &lt;option value="">Ipsum&lt;/option>
+                &lt;/select>
+            &lt;/label>
+            &lt;label for="month" class="field select">
+                &lt;select id="month" name="">
+                    &lt;option value="">Month&lt;/option>
+                    &lt;option value="">Lorem&lt;/option>
+                    &lt;option value="">Ipsum&lt;/option>
+                &lt;/select>
+            &lt;/label>
+            &lt;label for="year" class="field select">
+                &lt;select id="year" name="">
+                    &lt;option value="">Year&lt;/option>
+                    &lt;option value="">Lorem&lt;/option>
+                    &lt;option value="">Ipsum&lt;/option>
+                &lt;/select>
+            &lt;/label>
+        &lt;/div>
+    &lt;/fieldset>
+
+    &lt;fieldset>
+        &lt;legend>What colors do you like?&lt;/legend>
+        &lt;label for="red" class="checkbox">
+            &lt;input type="checkbox" id="red" name="">
+            &lt;div class="control">&lt;/div>
+            &lt;span>Red&lt;/span>
+        &lt;/label>
+        &lt;label for="green" class="checkbox">
+            &lt;input type="checkbox" id="green" name="">
+            &lt;div class="control">&lt;/div>
+            &lt;span>Green&lt;/span>
+        &lt;/label>
+        &lt;label for="blue" class="checkbox">
+            &lt;input type="checkbox" id="blue" name="">
+            &lt;div class="control">&lt;/div>
+            &lt;span>Blue&lt;/span>
+        &lt;/label>
+    &lt;/fieldset>
+
+    &lt;fieldset>
+        &lt;legend>What is your favorite animal?&lt;/legend>
+        &lt;div class="selector">
+            &lt;label for="radio1" class="radio-select">
+                &lt;input type="radio" id="radio1" name="radio">
+                &lt;span class="control">Lion&lt;/span>
+            &lt;/label>
+            &lt;label for="radio2" class="radio-select">
+                &lt;input type="radio" id="radio2" name="radio">
+                &lt;span class="control">Tiger&lt;/span>
+            &lt;/label>
+            &lt;label for="radio3" class="radio-select">
+                &lt;input type="radio" id="radio3" name="radio">
+                &lt;span class="control">Bear&lt;/span>
+            &lt;/label>
+            &lt;label for="radio4" class="radio-select">
+                &lt;input type="radio" id="radio4" name="radio">
+                &lt;span class="control">Cat&lt;/span>
+            &lt;/label>
+            &lt;label for="radio5" class="radio-select">
+                &lt;input type="radio" id="radio5" name="radio">
+                &lt;span class="control">Dog&lt;/span>
+            &lt;/label>
+        &lt;/div>
+    &lt;/fieldset>
+
+    &lt;div class="form-group-title">Account&lt;/div>
+
+    &lt;label for="email" class="field">
+        &lt;span>Email&lt;/span>
+        &lt;input type="email" id="email" name="" placeholder="john@johndoe.com">
     &lt;/label>
-    &lt;label for="checkbox3" class="inline">
-        &lt;input type="checkbox" id="checkbox3" name="">
-        &lt;div class="checkbox">&lt;/div>
-        &lt;span>Three&lt;/span>
+
+    &lt;label for="password" class="field">
+        &lt;span>Password&lt;/span>
+        &lt;input type="password" id="password" name="">
     &lt;/label>
-&lt;/fieldset>
-&lt;fieldset class="split-evenly">
-    &lt;legend>Legend&lt;/legend>
-    &lt;label for="radio1" class="centered">
-        &lt;input type="radio" id="radio1" name="radio">
-        &lt;div class="radio">&lt;/div>
-        &lt;span>One&lt;/span>
+
+    &lt;div class="form-group-title">Contact&lt;/div>
+
+    &lt;label for="address" class="field">
+        &lt;span>Address&lt;/span>
+        &lt;input type="text" id="address" name="" placeholder="420 Lorem St.">
     &lt;/label>
-    &lt;label for="radio2" class="centered">
-        &lt;input type="radio" id="radio2" name="radio">
-        &lt;div class="radio">&lt;/div>
-        &lt;span>Two&lt;/span>
+
+    &lt;label for="city" class="field">
+        &lt;span>City&lt;/span>
+        &lt;input type="text" id="city" name="" placeholder="Ipsum">
     &lt;/label>
-    &lt;label for="radio3" class="centered">
-        &lt;input type="radio" id="radio3" name="radio">
-        &lt;div class="radio">&lt;/div>
-        &lt;span>Three&lt;/span>
+
+    &lt;label for="state" class="field select">
+        &lt;span>State&lt;/span>
+        &lt;select id="state" name="">
+            &lt;option value="">-Select your state-&lt;/option>
+            &lt;option value="">Lorem&lt;/option>
+            &lt;option value="">Ipsum&lt;/option>
+        &lt;/select>
     &lt;/label>
-&lt;/fieldset></code></pre>
+
+    &lt;label for="Phone" class="field">
+        &lt;span>Phone&lt;/span>
+        &lt;input type="tel" id="Phone" name="" placeholder="123-456-7890">
+    &lt;/label>
+
+    &lt;div class="form-group-title">Other&lt;/div>
+
+    &lt;label for="toggle" class="toggle">
+        &lt;div class="toggle-text">
+            &lt;div>Notifications&lt;/div>
+            &lt;div style="opacity: .5;">Notifications will notify you about important events. You can change this.&lt;/div>
+        &lt;/div>
+        &lt;input type="checkbox" id="toggle" name="">
+        &lt;div class="control">&lt;/div>
+    &lt;/label>
+
+    &lt;label for="message" class="field">
+        &lt;span>Message&lt;/span>
+        &lt;textarea id="message" name="" rows="6" placeholder="Heyyy">&lt;/textarea>
+    &lt;/label>
+
+&lt;/form></code></pre>
                 </article>
 
                 <h4 id="accordion">Accordion</h4>
                 <article>
                     <div class="example">
                         <div class="accordion">
-                            <span class="accordion-summary">This accordion is has active class</span>
+                            <span class="accordion-summary">Accordion</span>
                             <p>Accordion content</p>
                         </div>
                         <div class="accordion active">
-                            <span class="accordion-summary">There's a nested accordion inside</span>
+                            <span class="accordion-summary">There's a nested accordion inside, and is active</span>
                             <p>Accordion content</p>
                             <div class="accordion">
                                 <span class="accordion-summary">Nested accordion</span>
@@ -433,12 +603,12 @@ button:hover, button:focus {
                             </div>
                         </div>
                     </div>
-                    <pre class="html"><code class="language-html">&lt;div class="accordion active">
-    &lt;span class="accordion-summary">This accordion is has active class&lt;/span>
+                    <pre class="html"><code class="language-html">&lt;div class="accordion">
+    &lt;span class="accordion-summary">Accordion&lt;/span>
     &lt;span>Accordion content&lt;/span>
 &lt;/div>
 &lt;div class="accordion">
-    &lt;span class="accordion-summary">There's a nested accordion inside&lt;/span>
+    &lt;span class="accordion-summary">There's a nested accordion inside, and is active&lt;/span>
     &lt;span>Accordion content&lt;/span>
     &lt;div class="accordion">
         &lt;span class="accordion-summary">Nested accordion&lt;/span>

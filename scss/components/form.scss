@@ -1,40 +1,215 @@
-@import "../essentials/variables";
 /*==================================================
 
   Form
 
 ==================================================*/
 
-
-/*
- * Span & legend
- */
-
-label span {
-  padding: .4rem 0;
-  margin : 0 1rem 0 0;
-}
-
-label legend {
-  padding: 0;
-}
+$form-border        : .1rem solid #ccc;
+$form-spacing       : 2rem;
+$form-highlight     : rgba(30,144,255,.4);
+$form-highlight-soft: rgba(30,144,255,.15);
+$form-highlight-hard: rgba(30,144,255,.7);
 
 
 /*
- * Input, textarea, select
+ * Clearing default values
  */
 
-label input,
-label textarea,
-label select {
-  padding     : 1rem .5rem;
-  border      : .1rem solid #666;
-  font-family: 'IBM Plex Sans', serif;
-  font-size   : 1.4rem;
+%hide-input {
 
-  &:focus, &:hover {}
-  &:valid {}
-  &:invalid {}
+  input[type=checkbox],
+  input[type=radio]{
+    position: absolute;
+    z-index : -1;
+    opacity : 0;
+  }
+
+}
+
+%normalize-textarea {
+  -webkit-appearance: textfield;
+  resize            : vertical;
+  overflow          : auto;
+}
+
+%normalize-select {
+  cursor            : pointer;
+  appearance        : none;
+  -moz-appearance   : none;
+  -webkit-appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+}
+
+
+/*
+ * Form style
+ */
+
+form {
+  width         : 100%;
+  max-width     : 500px;
+  margin        : 0 auto;
+  padding       : 2rem;
+  border        : .1rem solid #ccc;
+  border-radius : .3rem;
+  background    : #f6f6f6;
+}
+
+
+/*
+ * Form group title
+ */
+
+.form-group-title {
+  margin-top    : 6rem;
+  margin-bottom : $form-spacing;
+  padding-bottom: 1rem;
+  border-bottom : $form-border;
+  font-size     : 2.4rem;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+}
+
+
+/*
+ * Fieldset
+ */
+
+fieldset {
+  border  : none;
+  padding : 0;
+  margin  : 0 0 $form-spacing;
+}
+
+
+/*
+ * Field
+ * Textarea, select, textual inputs
+ */
+
+.field {
+  display   : flex;
+  flex-flow : column nowrap;
+  margin    : 0 0 $form-spacing;
+
+  textarea {
+    @extend %normalize-textarea;
+  }
+
+  &.select {
+    position: relative;
+
+    select {
+      @extend %normalize-select;
+    }
+
+    &:after {
+      content       : url('../imgs/dropdown.svg');
+      pointer-events: none;
+      position      : absolute;
+      right         : 1rem;
+      bottom        : .6rem;
+    }
+
+  }
+
+  input,
+  select,
+  textarea {
+    width         : 100%;
+    padding       : 1rem 2rem 1rem .5rem;
+    border        : $form-border;
+    border-radius : .3rem;
+    outline       : none;
+    margin        : 0;
+    font-family   : sans-serif;
+    font-size     : 1.4rem;
+    background    : white;
+
+    &::placeholder {}
+
+    &:hover, &:focus {
+      box-shadow: inset 0 0 0 .2rem $form-highlight;
+    }
+
+    &:valid {}
+
+    &:invalid {}
+
+  }
+
+}
+
+
+/*
+ * Checkbox
+ */
+
+.checkbox {
+  @extend %hide-input;
+  display     : flex;
+  flex-flow   : row wrap;
+  align-items : center;
+  cursor      : pointer;
+
+  .control {
+    position      : relative;
+    width         : 1.6rem;
+    height        : 1.6rem;
+    margin        : .5rem;
+    border        : $form-border;
+    border-radius : .2rem;
+    background    : white;
+
+    &:before {
+      content       : '';
+      position      : absolute;
+      top           : 50%;
+      left          : 50%;
+      z-index       : 1;
+      width         : 3.2rem;
+      height        : 3.2rem;
+      border-radius : 50%;
+      background    : transparent;
+      transform     : translate3d(-50%,-50%,0);
+      transition    : .2s;
+    }
+
+    &:after {
+      content       : '';
+      position      : absolute;
+      top           : 50%;
+      left          : 50%;
+      z-index       : 2;
+      width         : .5rem;
+      height        : 1rem;
+      border-bottom : .2rem solid black;
+      border-right  : .2rem solid black;
+      transform     : translate3d(-50%,-40%,0) rotate3d(0,0,1,40deg) scale3d(0,0,0);
+      transition    : .2s;
+    }
+
+  }
+
+  input[type=checkbox] {
+
+    &:hover ~ .control:before,
+    &:focus ~ .control:before {
+      background: $form-highlight-soft;
+    }
+
+    &:checked ~ .control:after {
+      transform: translate3d(-50%,-60%,0) rotate3d(0,0,1,40deg) scale3d(1,1,1);
+    }
+
+  }
 
 }
 
@@ -44,177 +219,59 @@ label select {
  */
 
 .toggle {
-  cursor        : pointer;
-  position      : relative;
-  --width       : 4rem;
-  --height      : 2.6rem;
-  width         : var(--width);
-  height        : var(--height);
-  border-radius : 400rem;
-  box-shadow    : inset 0 .1rem .3rem 0 rgba(0,0,0,.4);
-  background    : #ccc;
-  transition    : .2s;
+  @extend %hide-input;
+  display         : flex;
+  flex-flow       : row nowrap;
+  align-items     : center;
+  justify-content : space-between;
+  margin          : 0 0 $form-spacing;
+  cursor          : pointer;
 
-  &:after {
-    content       : '';
-    position      : absolute;
-    top           : .3rem;
-    left          : .3rem;
-    width         : calc(var(--height) - 0.6rem);
-    height        : calc(var(--height) - 0.6rem);
-    border-radius : 50%;
-    box-shadow    : 0 .2rem .4rem 0 rgba(0,0,0,.24);
-    background    : white;
+  .toggle-text {
+    flex          : 1;
+    padding-right : 1rem;
+  }
+
+  .control {
+    position      : relative;
+    --width       : 4rem;
+    --height      : 2.6rem;
+    width         : var(--width);
+    height        : var(--height);
+    border-radius : 400rem;
+    box-shadow    : inset 0 .1rem .3rem 0 rgba(0,0,0,.4);
+    background    : #eee;
     transition    : .2s;
-  }
 
-}
-
-// Toggle checked
-input[type=checkbox]:checked ~ .toggle {
-  background: rgba(80,200,80,.6);
-
-  &:after {
-    left: calc(var(--width) - var(--height) + .3rem);
-  }
-
-}
-
-
-/*
- * Checkbox & radio
- */
-
-.checkbox,
-.radio {
-  cursor        : pointer;
-  position      : relative;
-  width         : 1.6rem;
-  height        : 1.6rem;
-  margin        : .5rem;
-  border        : .2rem solid #666;
-  border-radius : .2rem;
-
-  &:before {
-    content       : '';
-    position      : absolute;
-    top           : 50%;
-    left          : 50%;
-    z-index       : 1;
-    width         : 3.2rem;
-    height        : 3.2rem;
-    border-radius : 50%;
-    background    : transparent;
-    transform     : translate3d(-50%,-50%,0);
-    transition    : .2s;
-  }
-
-  &:after {
-    content       : '';
-    position      : absolute;
-    top           : 50%;
-    left          : 50%;
-    z-index       : 2;
-    width         : .8rem;
-    height        : .8rem;
-    border-radius : .2rem;
-    background    : #333;
-    transform     : translate3d(-50%,-50%,0) scale3d(0,0,0);
-    transition    : .2s;
-  }
-
-}
-
-.radio,
-.radio:after {
-  border-radius: 50%;
-}
-
-// Checkbox & radio checked
-input[type=checkbox],
-input[type=radio] {
-  
-  &:focus ~ .checkbox:before,
-  &:hover ~ .checkbox:before,
-  &:focus ~ .radio:before,
-  &:hover ~ .radio:before {
-    background: rgba(0,0,0,.1);
-  }
-
-  &:checked ~ .checkbox:after,
-  &:checked ~ .radio:after {
-    transform: translate3d(-50%,-50%,0) scale3d(1,1,1);
-  }
-
-  &:disabled ~ .checkbox,
-  &:disabled ~ .radio {
-    opacity: .3;
-  }
-
-}
-
-
-/*
- * Label layouts
- */
-
-label {
-  display: flex;
-
-  &.inline {
-    flex-direction: row;
-    align-items   : stretch;
-  }
-
-  &.block {
-    flex-direction: column;
-  }
-
-  &.spaced {
-    flex-flow       : row nowrap;
-    align-items     : center;
-    justify-content : space-between;
-
-    input, textarea, select {
-      flex-basis: 20rem;
+    &:after {
+      content       : '';
+      position      : absolute;
+      top           : .3rem;
+      left          : .3rem;
+      width         : calc(var(--height) - 0.6rem);
+      height        : calc(var(--height) - 0.6rem);
+      border-radius : 50%;
+      box-shadow    : 0 .2rem .4rem 0 rgba(0,0,0,.24);
+      background    : white;
+      transition    : .2s;
     }
 
   }
 
-  &.centered {
-    flex-direction: column;
-    align-items   : center;
-  }
+  input[type=checkbox] {
 
-}
-
-
-/*
- * Fieldset layouts
- */
-
-fieldset {
-  display : flex;
-  border  : none;
-  padding : 0;
-
-  &.inline {
-    flex-flow: row wrap;
-  }
-
-  &.block {
-    flex-flow: column wrap;
-  }
-
-  &.split {
-    flex-flow: row nowrap;
-
-    @media (max-width: $screen-s) {
-      flex-flow: column nowrap;
+    &:hover ~ .control,
+    &:focus ~ .control {
+      box-shadow: inset 0 0.1rem 0.3rem 0 rgba(0,0,0,0.4), 0 0 0 .2rem $form-highlight-hard;
     }
 
-    label {
-      flex: 1 1 auto;
+    &:checked ~ .control {
+      background: rgba(80, 200, 80, .3);
+
+      &:after {
+        left: calc(var(--width) - var(--height) + .3rem);
+      }
+
     }
 
   }
@@ -223,22 +280,73 @@ fieldset {
 
 
 /*
- * Clearing default values
+ * Selector
  */
 
-textarea {
-  -webkit-appearance: textfield;
-  resize            : vertical;
-  overflow          : auto;
+.selector {
+  display   : flex;
+  flex-flow : row nowrap;
+
+  .radio-select {
+    @extend %hide-input;
+    flex: 1 1 auto;
+
+    .control {
+      width         : 100%;
+      border-top    : $form-border;
+      border-right  : none;
+      border-bottom : $form-border;
+      border-left   : $form-border;
+      padding       : 1rem 0;
+      text-align    : center;
+      color         : #999;
+      background    : white;
+      transition    : .2s;
+    }
+
+    &:first-of-type .control {
+      border-top-left-radius    : .3rem;
+      border-bottom-left-radius : .3rem;
+    }
+    &:last-of-type .control {
+      border-right              : $form-border;
+      border-top-right-radius   : .3rem;
+      border-bottom-right-radius: .3rem;
+    }
+
+    input[type=radio] {
+
+      &:hover ~ .control,
+      &:focus ~ .control {
+        box-shadow: inset 0 0 0 .2rem $form-highlight;
+      }
+
+      &:checked ~ .control {
+        background: #eee;
+        color     : black;
+      }
+
+    }
+
+  }
+
 }
 
-input[type=checkbox],
-input[type=radio] {
-  position: absolute;
-  z-index : -1;
-  opacity : 0;
-}
 
-input[type="number"] {
-  width: 100%;
+/*
+ * Fields
+ */
+
+.fields {
+  display   : flex;
+  flex-flow : row nowrap;
+
+  label {
+    flex: 1 1 auto;
+  }
+
+  label + label {
+    margin-left: 1rem;
+  }
+
 }
