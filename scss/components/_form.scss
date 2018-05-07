@@ -1,0 +1,380 @@
+/*==================================================
+
+  Form
+
+==================================================*/
+
+
+/*
+ * Clearing default values
+ */
+
+%hide-input {
+
+  input[type=checkbox],
+  input[type=radio]{
+    position: absolute;
+    z-index : -1;
+    opacity : 0;
+  }
+
+}
+
+%normalize-textarea {
+  -webkit-appearance: textfield;
+  resize            : vertical;
+  overflow          : auto;
+}
+
+%normalize-select {
+  cursor            : pointer;
+  appearance        : none;
+  -moz-appearance   : none;
+  -webkit-appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+}
+
+
+/*
+ * Form style
+ */
+
+form {
+  width         : 100%;
+  max-width     : 500px;
+  margin        : 10rem auto;
+  padding       : 2rem;
+  border        : .1rem solid #ccc;
+  border-radius : .3rem;
+  background    : #f6f6f6;
+}
+
+
+/*
+ * Form group title
+ */
+
+.form-group-title {
+  margin-top    : 6rem;
+  margin-bottom : 2rem;
+  padding-bottom: 1rem;
+  border-bottom : .1rem solid #ccc;
+  font-size     : 2.4rem;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+}
+
+
+/*
+ * Fieldset
+ */
+
+fieldset {
+  border  : none;
+  padding : 0;
+  margin  : 0 0 2rem;
+}
+
+
+/*
+ * Field
+ * Textarea, select, textual inputs
+ */
+
+.field {
+  display   : flex;
+  flex-flow : column nowrap;
+  margin    : 0 0 2rem;
+
+  textarea {
+    @extend %normalize-textarea;
+  }
+
+  &.select {
+    position: relative;
+
+    select {
+      @extend %normalize-select;
+    }
+
+    &:after {
+      content       : url('assets/imgs/dropdown.svg');
+      pointer-events: none;
+      position      : absolute;
+      right         : 1rem;
+      bottom        : .6rem;
+    }
+
+  }
+
+  input,
+  select,
+  textarea {
+    width         : 100%;
+    padding       : 1rem 2rem 1rem .5rem;
+    border        : .1rem solid #ccc;
+    border-radius : .3rem;
+    outline       : none;
+    margin        : 0;
+    font-family   : sans-serif;
+    font-size     : 1.4rem;
+    background    : white;
+
+    &::placeholder {}
+
+    &:hover, &:focus {
+      border-color: dodgerblue;
+      box-shadow  : 0 0 .6rem rgba(30,144,255,.5);
+    }
+
+    &:valid {}
+
+    &:invalid {}
+
+  }
+
+}
+
+
+/*
+ * Checkbox
+ */
+
+.checkbox {
+  @extend %hide-input;
+  display     : flex;
+  flex-flow   : row wrap;
+  align-items : center;
+  cursor      : pointer;
+
+  span {
+    user-select         : none;
+    -webkit-user-select : none;
+  }
+
+  .control {
+    position      : relative;
+    width         : 1.6rem;
+    height        : 1.6rem;
+    margin        : .5rem;
+    border        : .1rem solid #ccc;
+    border-radius : .2rem;
+    background    : white;
+
+    &:before {
+      content       : '';
+      position      : absolute;
+      top           : 50%;
+      left          : 50%;
+      z-index       : 1;
+      width         : 3.2rem;
+      height        : 3.2rem;
+      border-radius : 50%;
+      background    : transparent;
+      transform     : translate3d(-50%,-50%,0);
+      transition    : .2s;
+    }
+
+    &:after {
+      content       : '';
+      position      : absolute;
+      top           : 50%;
+      left          : 50%;
+      z-index       : 2;
+      width         : .5rem;
+      height        : 1rem;
+      border-bottom : .2rem solid black;
+      border-right  : .2rem solid black;
+      transform     : translate3d(-50%,-40%,0) rotate3d(0,0,1,40deg) scale3d(0,0,0);
+      transition    : .2s;
+    }
+
+  }
+
+  input[type=checkbox] {
+
+    &:hover ~ .control:before,
+    &:focus ~ .control:before {
+      background: rgba(30,144,255,0.15);
+    }
+
+    &:checked ~ .control:after {
+      transform: translate3d(-50%,-60%,0) rotate3d(0,0,1,40deg) scale3d(1,1,1);
+    }
+
+  }
+
+}
+
+
+/*
+ * Toggle
+ */
+
+.toggle {
+  @extend %hide-input;
+  display         : flex;
+  flex-flow       : row nowrap;
+  align-items     : center;
+  justify-content : space-between;
+  margin          : 0 0 2rem;
+  cursor          : pointer;
+
+  .toggle-text {
+    flex          : 1;
+    padding-right : 1rem;
+  }
+
+  .control {
+    position      : relative;
+    width         : 4rem;
+    height        : 1.6rem;
+    border-radius : 400rem;
+    background    : #ccc;
+    transition    : .2s;
+
+    &:before {
+      content       : '';
+      position      : absolute;
+      top           : -1.6rem;
+      left          : -1.2rem;
+      z-index       : 1;
+      width         : 4.8rem;
+      height        : 4.8rem;
+      border-radius : 50%;
+      background    : transparent;
+      transition    : .2s;
+    }
+
+    &:after {
+      content       : '';
+      position      : absolute;
+      top           : -.4rem;
+      left          : 0;
+      width         : 2.4rem;
+      height        : 2.4rem;
+      border-radius : 50%;
+      box-shadow    : 0 .1rem .4rem 0 rgba(0,0,0,.4);
+      background    : white;
+      transition    : .2s;
+    }
+
+  }
+
+  input[type=checkbox] {
+
+    &:hover ~ .control:before,
+    &:focus ~ .control:before {
+      background: rgba(0,0,0,.1);
+    }
+
+    &:checked {
+
+      &:hover ~ .control:before,
+      &:focus ~ .control:before {
+        background: rgba(30,144,255,.15);
+      }
+
+      & ~ .control {
+        background: rgba(30,144,255,.2);
+
+        &:after {
+          left      : 1.6rem;
+          box-shadow: 0 .1rem .4rem 0 rgba(0,0,0,.6);
+          background: dodgerblue;
+        }
+
+        &:before {
+          left: .4rem;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+/*
+ * Selector
+ */
+
+.selector {
+  display   : flex;
+  flex-flow : row nowrap;
+
+  .radio-select {
+    @extend %hide-input;
+    flex  : 1 1 auto;
+    cursor: pointer;
+
+    .control {
+      position            : relative;
+      width               : 100%;
+      border              : .1rem solid #ccc;
+      padding             : 1rem 0;
+      text-align          : center;
+      color               : #999;
+      user-select         : none;
+      -webkit-user-select : none;
+      background          : white;
+      transition          : .2s;
+    }
+
+    &:first-of-type .control {
+      border-top-left-radius    : .3rem;
+      border-bottom-left-radius : .3rem;
+    }
+
+    &:last-of-type .control {
+      border-top-right-radius   : .3rem;
+      border-bottom-right-radius: .3rem;
+    }
+
+    input[type=radio] {
+
+      &:hover ~ .control,
+      &:focus ~ .control {
+        z-index     : 1;
+        box-shadow  : 0 0 .6rem rgba(30,144,255,.5);
+        border-color: dodgerblue;
+      }
+
+      &:checked ~ .control {
+        background: rgba(30,144,255,.15);
+        color     : black;
+      }
+
+    }
+
+  }
+
+}
+
+
+/*
+ * Fields
+ */
+
+.fields {
+  display   : flex;
+  flex-flow : row nowrap;
+
+  label {
+    flex: 1 1 auto;
+  }
+
+  label + label {
+    margin-left: 1rem;
+  }
+
+}

@@ -1,0 +1,201 @@
+/*==================================================
+
+  Buttons
+
+==================================================*/
+
+
+/*
+ * Shared style
+ */
+
+%button-shared {
+  display             : inline-block;
+  cursor              : pointer;
+  outline             : none;
+  border-radius       : .3rem;
+  user-select         : none;
+  -webkit-user-select : none;
+  transition          : .2s;
+
+  span, svg, img {
+    vertical-align: middle;
+  }
+
+}
+
+
+/*
+ * Primary button
+ */
+
+.btn-primary {
+  @extend %button-shared;
+  padding       : 1rem 2rem;
+  border        : none;
+  background    : dodgerblue;
+  font-size     : 1.4rem;
+  letter-spacing: .1rem;
+  color         : white;
+  fill          : white;
+
+  &:hover, &:focus {
+    background: darken(dodgerblue, 15%);
+  }
+
+  &:active {
+    box-shadow: 0 .2rem .4rem 0 rgba(0,0,0,.3);
+  }
+
+  &:disabled {
+    cursor    : not-allowed;
+    box-shadow: none;
+    color     : #aaa;
+    fill      : #aaa;
+    background: #eee;
+  }
+
+  @extend %button-states;
+}
+
+
+/*
+ * Secondary button
+ */
+
+.btn-secondary {
+  @extend %button-shared;
+  padding       : 1rem 2rem;
+  border        : .1rem solid dodgerblue;
+  background    : transparent;
+  font-size     : 1.4rem;
+  letter-spacing: .1rem;
+  color         : dodgerblue;
+  fill          : dodgerblue;
+
+  &:hover, &:focus {
+    background: rgba(30,144,255,.15);
+  }
+
+  &:active {
+    box-shadow: 0 .2rem .4rem 0 rgba(0,0,0,.3);
+  }
+
+  &:disabled {
+    cursor    : not-allowed;
+    box-shadow: none;
+    border    : none;
+    color     : #aaa;
+    fill      : #aaa;
+    background: #eee;
+  }
+
+  @extend %button-states;
+}
+
+
+/*
+ * Ghost button
+ */
+
+.btn-ghost {
+  @extend %button-shared;
+  padding   : 1rem 2rem;
+  border    : none;
+  background: transparent;
+  font-size : 1.4rem;
+  color     : black;
+  fill      : black;
+
+  &:hover, &:focus {
+    background: #eee;
+  }
+
+  &:active {
+    background: #ddd;
+  }
+
+  &:disabled {
+    cursor    : not-allowed;
+    box-shadow: none;
+    color     : #aaa;
+    fill      : #aaa;
+    background: #eee;
+  }
+
+  @extend %button-states;
+}
+
+
+/*
+ * Contain button
+ */
+
+.btn-contain {
+  @extend %button-shared;
+  padding   : .8rem;
+  border    : none;
+  font-size : inherit;
+  background: transparent;
+}
+
+
+/*
+ * Button states
+ */
+
+%button-states {
+
+  &.loading,
+  &.error {
+    pointer-events: none;
+    position      : relative;
+    border        : none;
+    color         : transparent;
+
+    span, svg, img {
+      opacity: 0;
+    }
+
+  }
+
+  &.loading {
+    background: lightskyblue;
+
+    &:after {
+      content       : '';
+      position      : absolute;
+      top           : 50%;
+      left          : 50%;
+      height        : 1.8rem;
+      width         : 1.8rem;
+      border-radius : 50%;
+      border-width  : .2rem;
+      border-style  : solid;
+      border-color  : white white transparent transparent;
+      animation     : loading-animation .75s linear infinite;
+
+      @keyframes loading-animation {
+        0%   { transform: translate(-50%,-50%) rotate(0deg); }
+        100% { transform: translate(-50%,-50%) rotate(360deg); }
+      }
+
+    }
+
+  }
+
+  &.error {
+    background: tomato;
+
+    &:after {
+      content   : 'Error';
+      position  : absolute;
+      top       : 50%;
+      left      : 50%;
+      color     : white;
+      transform : translate(-50%,-50%);
+    }
+
+  }
+
+}

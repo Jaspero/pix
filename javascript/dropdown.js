@@ -7,7 +7,7 @@ export class Dropdown {
     run() {
       this.dropdown.forEach(el => {
 
-        const dropdownContent = el.querySelector('[class*="dropdown_content"]');
+        const dropdownContent = el.querySelector('[class*="dropdown-content"]');
 
         el.addEventListener('click', (event) => {
 

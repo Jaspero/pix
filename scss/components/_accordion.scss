@@ -26,19 +26,20 @@
  */
 
 .accordion-summary {
-  display         : flex;
-  justify-content : space-between;
-  align-items     : center;
-  cursor          : pointer;
-  user-select     : none;
-  padding         : 1rem;
-  margin          : 0;
-  background      : #eee;
-  color           : #444;
-  transition      : 0.2s;
+  display             : flex;
+  justify-content     : space-between;
+  align-items         : center;
+  cursor              : pointer;
+  user-select         : none;
+  -webkit-user-select : none;
+  padding             : 1rem;
+  margin              : 0;
+  background          : #eee;
+  color               : #444;
+  transition          : .2s;
 
   &:after {
-    content   : url('../imgs/caret.svg');
+    content   : url('assets/imgs/caret.svg');
     transition: .2s;
   }
 

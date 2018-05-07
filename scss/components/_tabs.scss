@@ -10,7 +10,6 @@
  */
 
 .tabs {
-  border: .1rem solid #ccc;
 
   nav {
     display   : flex;
@@ -20,14 +19,17 @@
 
     a {
       padding       : 1rem 3rem;
-      border-bottom : 2px solid transparent;
+      border-bottom : .4rem solid transparent;
       white-space   : nowrap;
 
       &.active {
-        border-bottom: 2px solid dodgerblue;
+        border-bottom: .4rem solid dodgerblue;
       }
+
     }
+
   }
+
 }
 
 

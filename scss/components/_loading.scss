@@ -1,0 +1,72 @@
+/*==================================================
+
+  Loading
+
+==================================================*/
+
+
+/*
+ * Spinner
+ */
+
+$spinnerSize: 40;
+
+.loading-spinner {
+  width   : $spinnerSize + px;
+  height  : $spinnerSize + px;
+  x       : 0px;
+  y       : 0px;
+  viewBox : 0 0 $spinnerSize $spinnerSize;
+
+  circle {
+    fill            : transparent;
+    stroke          : dodgerblue;
+    stroke-width    : 4;
+    stroke-linecap  : round;
+    stroke-dasharray: (3.14 * $spinnerSize);
+    transform-origin: (0.5px * $spinnerSize) (0.5px * $spinnerSize) 0;
+    animation       : loading-spinner 2.5s linear infinite;
+
+    @keyframes loading-spinner {
+      0%   { transform: rotate(0deg); stroke-dashoffset : (.66 * $spinnerSize); }
+      50%  { transform: rotate(720deg); stroke-dashoffset : (3.14 * $spinnerSize); }
+      100% { transform: rotate(1080deg); stroke-dashoffset : (.66 * $spinnerSize); }
+    }
+
+  }
+
+}
+
+
+/*
+ * Bar
+ */
+
+.loading-bar {
+  overflow  : hidden;
+  position  : relative;
+  height    : .6rem;
+  background: rgba(30,144,255,.3);
+
+  &:before, &:after {
+    content   : '';
+    position  : absolute;
+    width     : 50%;
+    height    : 100%;
+    background: rgb(30,144,255);
+  }
+
+  &:before {
+    animation: loading-bar 2.5s ease infinite;
+  }
+
+  &:after {
+    animation: loading-bar 2.5s cubic-bezier(.9,.1,.6,.7) infinite;
+  }
+
+  @keyframes loading-bar {
+    0%   { transform: translate3d(-100%,0,0); }
+    100% { transform: translate3d(200%,0,0); }
+  }
+
+}

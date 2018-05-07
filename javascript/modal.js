@@ -1,7 +1,7 @@
 export class Modal {
  constructor() {
    this.modal = document.querySelectorAll('[class*="modal"][id]');
-   this.modalContent = document.querySelectorAll('.modal_content');
+   this.modalContent = document.querySelectorAll('.modal-content');
    this.modalOpen = document.querySelectorAll('[data-open-modal]');
    this.modalClose = document.querySelectorAll('[data-close-modal]');
 
@@ -14,9 +14,9 @@ export class Modal {
      el.addEventListener('click', () => {
        modalEl.classList.add('active');
        document.documentElement.classList.add('modal-opened');
-       const modalHeaderEl = modalEl.querySelector('.modal_header').scrollHeight;
-       const modalFooterEl = modalEl.querySelector('.modal_footer').scrollHeight;
-       const modalBodyEl = modalEl.querySelector('.modal_body');
+       const modalHeaderEl = modalEl.querySelector('.modal-header').scrollHeight;
+       const modalFooterEl = modalEl.querySelector('.modal-footer').scrollHeight;
+       const modalBodyEl = modalEl.querySelector('.modal-body');
        modalBodyEl.style.maxHeight = ('calc(100vh - 4rem - ' + (modalHeaderEl + modalFooterEl) + 'px)');
      })
    });
