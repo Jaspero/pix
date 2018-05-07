@@ -4,12 +4,6 @@
 
 ==================================================*/
 
-$form-border        : .1rem solid #ccc;
-$form-spacing       : 2rem;
-$form-highlight     : rgba(30,144,255,.4);
-$form-highlight-soft: rgba(30,144,255,.15);
-$form-highlight-hard: rgba(30,144,255,.7);
-
 
 /*
  * Clearing default values
@@ -52,7 +46,7 @@ $form-highlight-hard: rgba(30,144,255,.7);
 form {
   width         : 100%;
   max-width     : 500px;
-  margin        : 0 auto;
+  margin        : 10rem auto;
   padding       : 2rem;
   border        : .1rem solid #ccc;
   border-radius : .3rem;
@@ -66,9 +60,9 @@ form {
 
 .form-group-title {
   margin-top    : 6rem;
-  margin-bottom : $form-spacing;
+  margin-bottom : 2rem;
   padding-bottom: 1rem;
-  border-bottom : $form-border;
+  border-bottom : .1rem solid #ccc;
   font-size     : 2.4rem;
 
   &:first-of-type {
@@ -85,7 +79,7 @@ form {
 fieldset {
   border  : none;
   padding : 0;
-  margin  : 0 0 $form-spacing;
+  margin  : 0 0 2rem;
 }
 
 
@@ -97,7 +91,7 @@ fieldset {
 .field {
   display   : flex;
   flex-flow : column nowrap;
-  margin    : 0 0 $form-spacing;
+  margin    : 0 0 2rem;
 
   textarea {
     @extend %normalize-textarea;
@@ -111,7 +105,7 @@ fieldset {
     }
 
     &:after {
-      content       : url('../imgs/dropdown.svg');
+      content       : url('assets/imgs/dropdown.svg');
       pointer-events: none;
       position      : absolute;
       right         : 1rem;
@@ -125,7 +119,7 @@ fieldset {
   textarea {
     width         : 100%;
     padding       : 1rem 2rem 1rem .5rem;
-    border        : $form-border;
+    border        : .1rem solid #ccc;
     border-radius : .3rem;
     outline       : none;
     margin        : 0;
@@ -136,7 +130,8 @@ fieldset {
     &::placeholder {}
 
     &:hover, &:focus {
-      box-shadow: inset 0 0 0 .2rem $form-highlight;
+      border-color: dodgerblue;
+      box-shadow  : 0 0 .6rem rgba(30,144,255,.5);
     }
 
     &:valid {}
@@ -159,12 +154,17 @@ fieldset {
   align-items : center;
   cursor      : pointer;
 
+  span {
+    user-select         : none;
+    -webkit-user-select : none;
+  }
+
   .control {
     position      : relative;
     width         : 1.6rem;
     height        : 1.6rem;
     margin        : .5rem;
-    border        : $form-border;
+    border        : .1rem solid #ccc;
     border-radius : .2rem;
     background    : white;
 
@@ -202,7 +202,7 @@ fieldset {
 
     &:hover ~ .control:before,
     &:focus ~ .control:before {
-      background: $form-highlight-soft;
+      background: rgba(30,144,255,0.15);
     }
 
     &:checked ~ .control:after {
@@ -224,7 +224,7 @@ fieldset {
   flex-flow       : row nowrap;
   align-items     : center;
   justify-content : space-between;
-  margin          : 0 0 $form-spacing;
+  margin          : 0 0 2rem;
   cursor          : pointer;
 
   .toggle-text {
@@ -234,24 +234,34 @@ fieldset {
 
   .control {
     position      : relative;
-    --width       : 4rem;
-    --height      : 2.6rem;
-    width         : var(--width);
-    height        : var(--height);
+    width         : 4rem;
+    height        : 1.6rem;
     border-radius : 400rem;
-    box-shadow    : inset 0 .1rem .3rem 0 rgba(0,0,0,.4);
-    background    : #eee;
+    background    : #ccc;
     transition    : .2s;
+
+    &:before {
+      content       : '';
+      position      : absolute;
+      top           : -1.6rem;
+      left          : -1.2rem;
+      z-index       : 1;
+      width         : 4.8rem;
+      height        : 4.8rem;
+      border-radius : 50%;
+      background    : transparent;
+      transition    : .2s;
+    }
 
     &:after {
       content       : '';
       position      : absolute;
-      top           : .3rem;
-      left          : .3rem;
-      width         : calc(var(--height) - 0.6rem);
-      height        : calc(var(--height) - 0.6rem);
+      top           : -.4rem;
+      left          : 0;
+      width         : 2.4rem;
+      height        : 2.4rem;
       border-radius : 50%;
-      box-shadow    : 0 .2rem .4rem 0 rgba(0,0,0,.24);
+      box-shadow    : 0 .1rem .4rem 0 rgba(0,0,0,.4);
       background    : white;
       transition    : .2s;
     }
@@ -260,16 +270,31 @@ fieldset {
 
   input[type=checkbox] {
 
-    &:hover ~ .control,
-    &:focus ~ .control {
-      box-shadow: inset 0 0.1rem 0.3rem 0 rgba(0,0,0,0.4), 0 0 0 .2rem $form-highlight-hard;
+    &:hover ~ .control:before,
+    &:focus ~ .control:before {
+      background: rgba(0,0,0,.1);
     }
 
-    &:checked ~ .control {
-      background: rgba(80, 200, 80, .3);
+    &:checked {
 
-      &:after {
-        left: calc(var(--width) - var(--height) + .3rem);
+      &:hover ~ .control:before,
+      &:focus ~ .control:before {
+        background: rgba(30,144,255,.15);
+      }
+
+      & ~ .control {
+        background: rgba(30,144,255,.2);
+
+        &:after {
+          left      : 1.6rem;
+          box-shadow: 0 .1rem .4rem 0 rgba(0,0,0,.6);
+          background: dodgerblue;
+        }
+
+        &:before {
+          left: .4rem;
+        }
+
       }
 
     }
@@ -289,27 +314,28 @@ fieldset {
 
   .radio-select {
     @extend %hide-input;
-    flex: 1 1 auto;
+    flex  : 1 1 auto;
+    cursor: pointer;
 
     .control {
-      width         : 100%;
-      border-top    : $form-border;
-      border-right  : none;
-      border-bottom : $form-border;
-      border-left   : $form-border;
-      padding       : 1rem 0;
-      text-align    : center;
-      color         : #999;
-      background    : white;
-      transition    : .2s;
+      position            : relative;
+      width               : 100%;
+      border              : .1rem solid #ccc;
+      padding             : 1rem 0;
+      text-align          : center;
+      color               : #999;
+      user-select         : none;
+      -webkit-user-select : none;
+      background          : white;
+      transition          : .2s;
     }
 
     &:first-of-type .control {
       border-top-left-radius    : .3rem;
       border-bottom-left-radius : .3rem;
     }
+
     &:last-of-type .control {
-      border-right              : $form-border;
       border-top-right-radius   : .3rem;
       border-bottom-right-radius: .3rem;
     }
@@ -318,11 +344,13 @@ fieldset {
 
       &:hover ~ .control,
       &:focus ~ .control {
-        box-shadow: inset 0 0 0 .2rem $form-highlight;
+        z-index     : 1;
+        box-shadow  : 0 0 .6rem rgba(30,144,255,.5);
+        border-color: dodgerblue;
       }
 
       &:checked ~ .control {
-        background: #eee;
+        background: rgba(30,144,255,.15);
         color     : black;
       }
 

@@ -34,6 +34,7 @@
                     <hr>
                     <a class="dropdown-item" href="#typography">Typography</a>
                     <a class="dropdown-item" href="#buttons">Buttons</a>
+                    <a class="dropdown-item" href="#tags">Tags</a>
                     <a class="dropdown-item" href="#grid">Grid</a>
                     <a class="dropdown-item" href="#loading">Loading</a>
                     <a class="dropdown-item" href="#form">Form</a>
@@ -84,19 +85,22 @@
 │   └── tools.scss
 ├── generic/
 │   ├── base.scss
+│   ├── images.scss
 │   └── typography.scss
 ├── components/
-│   ├── buttons.scss
-│   ├── grid.scss
-│   ├── form.scss
 │   ├── accordion.scss
-│   ├── modal.scss
-│   ├── tabs.scss
-│   ├── table.scss
+│   ├── buttons.scss
 │   ├── dropdown.scss
+│   ├── form.scss
+│   ├── grid.scss
+│   ├── loading.scss
+│   ├── modal.scss
+│   ├── table.scss
+│   ├── tabs.scss
 │   └── tooltips.scss
 └── utilities/
-    └── utilities.scss</code></pre>
+    ├── constructors.scss
+    └── decorators.scss</code></pre>
                 </article>
 
             </section>
@@ -206,6 +210,7 @@ button:hover, button:focus {
                 <article>
                     <div class="example">
                         <button class="btn-primary">Primary</button>
+                        <button class="btn-secondary">Secondary</button>
                         <button class="btn-ghost">Ghost</button>
                         <button class="btn-contain">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path d="M18.17 1.83c-1.1-1.1-2.08-.78-2.08-.78L7.45 9.68 6 14l4.32-1.45 8.63-8.64s.32-.98-.78-2.08zM10.6 11.6l-.47.47-1.47.5c-.1-.24-.23-.48-.5-.74-.26-.27-.5-.4-.74-.5l.5-1.48.47-.47s.78-.09 1.54.68c.76.76.68 1.54.68 1.54zM16 17H3V4h5l2-2H3a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2h13a2 2 0 0 0 2-2v-7l-2 2v5z"/></svg>
@@ -213,6 +218,7 @@ button:hover, button:focus {
                         <button class="btn-primary" disabled>Disabled</button>
                     </div>
                     <pre class="html"><code class="language-html">&lt;button class="btn-primary">Primary&lt;/button>
+&lt;button class="btn-secondary">Secondary&lt;/button>
 &lt;button class="btn-ghost">Ghost&lt;/button>
 &lt;button class="btn-contain">&lt;svg>…&lt;svg>&lt;/button>
 &lt;button class="btn-primary" disabled>Disabled&lt;/button></code></pre>
@@ -224,6 +230,20 @@ button:hover, button:focus {
                     </div>
                     <pre class="html"><code class="language-html">&lt;button class="btn-primary loading">Primary&lt;/button>
 &lt;button class="btn-primary error">Primary&lt;/button></code></pre>
+                </article>
+
+                <h4 id="tags">Tags</h4>
+                <article>
+                    <div class="example">
+                        <span class="tag-info">Info</span>
+                        <span class="tag-success">Success</span>
+                        <span class="tag-warning">Warning</span>
+                        <span class="tag-danger">Danger</span>
+                    </div>
+                    <pre class="html"><code class="language-html">&lt;span class="tag-info">Info&lt;/span>
+&lt;span class="tag-success">Success&lt;/span>
+&lt;span class="tag-warning">Warning&lt;/span>
+&lt;span class="tag-danger">Danger&lt;/span></code></pre>
                 </article>
 
                 <h4 id="grid">Grid</h4>
@@ -286,10 +306,10 @@ button:hover, button:focus {
 &lt;/div></code></pre>
                 </article>
 
-                <h4 id="Loading">Loading</h4>
+                <h4 id="loading">Loading</h4>
                 <article>
                     <div class="example">
-                        <div class="align-center p-y-m">
+                        <div class="ta-center p-y-m">
                             <svg class="loading-spinner"><circle cx="20" cy="20" r="18"></circle></svg>
                         </div>
                         <div class="loading-bar"></div>
@@ -596,26 +616,10 @@ button:hover, button:focus {
                             <span class="accordion-summary">Accordion</span>
                             <p>Accordion content</p>
                         </div>
-                        <div class="accordion active">
-                            <span class="accordion-summary">There's a nested accordion inside, and is active</span>
-                            <p>Accordion content</p>
-                            <div class="accordion">
-                                <span class="accordion-summary">Nested accordion</span>
-                                <p>Accordion content</p>
-                            </div>
-                        </div>
                     </div>
                     <pre class="html"><code class="language-html">&lt;div class="accordion">
     &lt;span class="accordion-summary">Accordion&lt;/span>
     &lt;span>Accordion content&lt;/span>
-&lt;/div>
-&lt;div class="accordion">
-    &lt;span class="accordion-summary">There's a nested accordion inside, and is active&lt;/span>
-    &lt;span>Accordion content&lt;/span>
-    &lt;div class="accordion">
-        &lt;span class="accordion-summary">Nested accordion&lt;/span>
-        &lt;span>Accordion content&lt;/span>
-    &lt;/div>
 &lt;/div></code></pre>
                 </article>
 
@@ -842,7 +846,7 @@ button:hover, button:focus {
                 <h6 id="card">Card</h6>
                 <article>
                     <div class="example">
-                        <div class="card align-center p-y-m">Card</div>
+                        <div class="card ta-center p-y-m">Card</div>
                     </div>
                     <pre class="html"><code class="language-html">&lt;div class="card">Card&lt;/div></code></pre>
                 </article>
@@ -850,13 +854,13 @@ button:hover, button:focus {
                 <h6 id="align">Align</h6>
                 <article>
                     <div class="example">
-                        <div class="align-left">Left</div>
-                        <div class="align-center">Center</div>
-                        <div class="align-right">Right</div>
+                        <div class="ta-left">Left</div>
+                        <div class="ta-center">Center</div>
+                        <div class="ta-right">Right</div>
                     </div>
-                    <pre class="html"><code class="language-html">&lt;p class="align-left">Left&lt;/p>
-&lt;p class="align-center">Center&lt;/p>
-&lt;p class="align-right">Right&lt;/p></code></pre>
+                    <pre class="html"><code class="language-html">&lt;p class="ta-left">Left&lt;/p>
+&lt;p class="ta-center">Center&lt;/p>
+&lt;p class="ta-right">Right&lt;/p></code></pre>
                 </article>
 
                 <h6 id="hide-and-show">Hide & show</h6>

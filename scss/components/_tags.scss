@@ -1,0 +1,42 @@
+/*==================================================
+
+  Tags
+
+==================================================*/
+
+
+/*
+ * Shared
+ */
+
+%tags-shared {
+  display       : inline-block;
+  padding       : .2rem 0.8rem;
+  border-radius : .3rem;
+  color         : white;
+}
+
+
+/*
+ * Tags
+ */
+
+.tag-info {
+  @extend %tags-shared;
+  background: lightskyblue;
+}
+
+.tag-success {
+  @extend %tags-shared;
+  background: mediumaquamarine;
+}
+
+.tag-warning {
+  @extend %tags-shared;
+  background: orange;
+}
+
+.tag-danger {
+  @extend %tags-shared;
+  background: tomato;
+}
