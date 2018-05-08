@@ -28,16 +28,9 @@ $spinnerSize: 40;
     animation       : loading-spinner 2.5s linear infinite;
 
     @keyframes loading-spinner {
-      0% {
-        transform         : rotate(0deg);
-        stroke-dashoffset : (.66 * $spinnerSize);
-      } 50% {
-        transform         : rotate(720deg);
-        stroke-dashoffset : (3.14 * $spinnerSize);
-      } 100% {
-        transform         : rotate(1080deg);
-        stroke-dashoffset : (.66 * $spinnerSize);
-      }
+      0%   { transform: rotate(0deg); stroke-dashoffset : (.66 * $spinnerSize); }
+      50%  { transform: rotate(720deg); stroke-dashoffset : (3.14 * $spinnerSize); }
+      100% { transform: rotate(1080deg); stroke-dashoffset : (.66 * $spinnerSize); }
     }
 
   }
@@ -72,11 +65,8 @@ $spinnerSize: 40;
   }
 
   @keyframes loading-bar {
-    0% {
-      transform: translate3d(-100%,0,0);
-    } 100% {
-      transform: translate3d(200%,0,0);
-    }
+    0%   { transform: translate3d(-100%,0,0); }
+    100% { transform: translate3d(200%,0,0); }
   }
 
 }
