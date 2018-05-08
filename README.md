@@ -1,6 +1,6 @@
 <div align="center">
 <br><br>
-<a href="https://pix-css.firebaseapp.com/"><img width="200" height="200" src="imgs/pix.svg"></a>
+<a href="https://pix-css.firebaseapp.com/"><img width="200" height="200" src="/images/pix.svg"></a>
 <br><br>
 </div>
 
