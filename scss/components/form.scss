@@ -105,7 +105,7 @@ fieldset {
     }
 
     &:after {
-      content       : url('assets/images/dropdown.svg');
+      content       : url('../images/dropdown.svg');
       pointer-events: none;
       position      : absolute;
       right         : 1rem;
